@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1031947606592",
+    "firebase_url": "https://hackathon-952dc.firebaseio.com",
+    "project_id": "hackathon-952dc",
+    "storage_bucket": "hackathon-952dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031947606592:android:891ac19a926c8201041da5",
+        "android_client_info": {
+          "package_name": "com.dasavatar.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031947606592-p3mr8u7grt38oqvneauee3auogmvp15b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dasavatar.app",
+            "certificate_hash": "bf137fb4194a48eefc0b6cdd1d46eb86680f20c5"
+          }
+        },
+        {
+          "client_id": "1031947606592-sqkbtr6f9d3nf3vo3ulquepajbolcu01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCrOzNllecqfw5MeOS7j9-L62LoPdcuRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031947606592-sqkbtr6f9d3nf3vo3ulquepajbolcu01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
