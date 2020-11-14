@@ -3,10 +3,10 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from dasavatar_ml.ml.serializers import UserSerializer, CrowdSerializer
+from .serializers import UserSerializer, CrowdSerializer
 
 
-class UserView(APIView):
+class image(APIView):
     def post(self, request, format=None):
         serializer = UserSerializer(data=request.data)
         check = dict()
@@ -24,10 +24,11 @@ class UserView(APIView):
             )
 
             return Response({'data': check}, status=status.HTTP_200_OK)
+        check['status'] = False
         return Response({'data': check}, status=status.HTTP_200_OK)
 
 
-class CrowdView(APIView):
+class crowd(APIView):
     def post(self, request, format=None):
         serializer = CrowdSerializer(data=request.data)
         check = dict()
@@ -66,4 +67,5 @@ class CrowdView(APIView):
             print("[INFO] Found {} body.".format(len(body)))
 
             return Response({'data': check}, status=status.HTTP_200_OK)
+        check['status'] = False
         return Response({'data': check}, status=status.HTTP_200_OK)
