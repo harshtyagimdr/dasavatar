@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Dashboard from './Components/Dashboard/Dashboard';
+import Profile from './Components/Dashboard/Profile';
+import Navbar from './Components/Dashboard/Navbar';
 
 class App extends Component {
  render(){
    return(
      <BrowserRouter>
      <div>
+       <Navbar />
      <Switch>
             <Route exact path='/'component={Dashboard} />
+            <Route path='/profile'component={Profile} />
            
           </Switch>
      </div>
