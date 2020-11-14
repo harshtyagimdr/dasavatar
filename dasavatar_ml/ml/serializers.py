@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class UserSerializer(serializers.ModelSerializer):
+class CrowdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Crowd
         fields = '__all__'
