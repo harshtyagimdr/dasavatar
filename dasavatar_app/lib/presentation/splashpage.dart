@@ -37,6 +37,7 @@ class _SplashPageState extends State<SplashPage> {
     return Container(
       child: Card(
         elevation: 250,
+        shadowColor: Colors.grey,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(ScreenUtil.instance.setHeight(8)),
@@ -47,13 +48,13 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             _getBottomBarItem(
-                index: 0, icontab: Icons.home, text: StringValues.FEED),
+                index: 0, icontab: Icons.feedback, text: StringValues.FEED),
             _getBottomBarItem(
                 index: 1,
-                icontab: Icons.youtube_searched_for,
+                icontab: Icons.add,
                 text: StringValues.POST),
             _getBottomBarItem(
-                index: 2, icontab: Icons.shopping_cart, text: StringValues.PROFILE),
+                index: 2, icontab: Icons.account_circle, text: StringValues.PROFILE),
           ],
         ),
       ),
@@ -74,16 +75,18 @@ class _SplashPageState extends State<SplashPage> {
       child: Container(
         decoration: BoxDecoration(
           border: Border(
-              bottom: _currentPage == index
+              top: _currentPage == index
                   ? BorderSide(
                       width: ScreenUtil.instance.setHeight(5),
                       color: Styles.BOTTOMNAVIGATIONBAR_BOTTOM_BORDER_COLOR)
                   : BorderSide(
                       width: ScreenUtil.instance.setHeight(0),
                       color: Colors.transparent)),
+       
         ),
         alignment: Alignment.center,
-        height: ScreenUtil.instance.setHeight(65),
+        height: ScreenUtil.instance.setHeight(70),
+        width: ScreenUtil.instance.setWidth(45),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -92,7 +95,7 @@ class _SplashPageState extends State<SplashPage> {
                 child: Icon(
                   icontab,
                   color: Styles.BOTTOMNAVIGATIONBAR_ICON_COLOR,
-                  size: ScreenUtil.instance.setHeight(32),
+                  size: (text==  StringValues.POST)?ScreenUtil.instance.setHeight(34):ScreenUtil.instance.setHeight(32),
                 ),
               ),
             ),
@@ -100,8 +103,7 @@ class _SplashPageState extends State<SplashPage> {
               text,
               style: TextStyle(
                   fontSize: 12,
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w700),
+                  fontWeight: FontWeight.w500),
             )
           ],
         ),

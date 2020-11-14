@@ -19,7 +19,7 @@ class Dasavatar extends StatelessWidget {
         theme: ThemeData(primaryColor: Colors.white,),
         initialRoute: SplashPage.routeNamed,
         routes: {
-          
+             SplashPage.routeNamed: (BuildContext context) => SplashPage(),
         });
   }
 }
