@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1031947606592-ga6ecobma4gk9d0l14gf1ooompu46ijb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dasavatar.app",
+            "certificate_hash": "7eeb14c3dfe08e1cb33ee024270f4f21bdab3267"
+          }
+        },
+        {
           "client_id": "1031947606592-p3mr8u7grt38oqvneauee3auogmvp15b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

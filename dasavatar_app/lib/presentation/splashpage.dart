@@ -16,6 +16,8 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  double defaultHeight = 896;
+  double defaultWidth = 414;
   int _currentPage;
   _getBody() {
     switch (_currentPage) {
