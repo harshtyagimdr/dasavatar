@@ -1,7 +1,6 @@
 import 'package:dasavatar_app/presentation/tab_pages/feed.dart';
 import 'package:dasavatar_app/presentation/tab_pages/post.dart';
 import 'package:dasavatar_app/presentation/tab_pages/profile.dart';
-import 'package:dasavatar_app/utils/global.dart';
 import 'package:dasavatar_app/utils/string_values.dart';
 import 'package:dasavatar_app/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,16 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SplashPage extends StatefulWidget {
-  static const String routeNamed = 'SplashPage';
+class HomePage extends StatefulWidget {
+  static const String routeNamed = 'HomePage';
+
   @override
-  _SplashPageState createState() => _SplashPageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
-  double defaultHeight = 896;
-  double defaultWidth = 414;
+class _HomePageState extends State<HomePage> {
   int _currentPage;
+
   _getBody() {
     switch (_currentPage) {
       case 0:
@@ -52,11 +51,11 @@ class _SplashPageState extends State<SplashPage> {
             _getBottomBarItem(
                 index: 0, icontab: Icons.feedback, text: StringValues.FEED),
             _getBottomBarItem(
-                index: 1,
-                icontab: Icons.add,
-                text: StringValues.POST),
+                index: 1, icontab: Icons.add, text: StringValues.POST),
             _getBottomBarItem(
-                index: 2, icontab: Icons.account_circle, text: StringValues.PROFILE),
+                index: 2,
+                icontab: Icons.account_circle,
+                text: StringValues.PROFILE),
           ],
         ),
       ),
@@ -80,11 +79,10 @@ class _SplashPageState extends State<SplashPage> {
               top: _currentPage == index
                   ? BorderSide(
                       width: ScreenUtil.instance.setHeight(5),
-                      color: Styles.BOTTOMNAVIGATIONBAR_BOTTOM_BORDER_COLOR)
+                      color: Styles.PRIMARY_COLOR)
                   : BorderSide(
                       width: ScreenUtil.instance.setHeight(0),
                       color: Colors.transparent)),
-       
         ),
         alignment: Alignment.center,
         height: ScreenUtil.instance.setHeight(70),
@@ -96,16 +94,16 @@ class _SplashPageState extends State<SplashPage> {
               child: Center(
                 child: Icon(
                   icontab,
-                  color: Styles.BOTTOMNAVIGATIONBAR_ICON_COLOR,
-                  size: (text==  StringValues.POST)?ScreenUtil.instance.setHeight(34):ScreenUtil.instance.setHeight(32),
+                  color: Styles.BLUE_GREY_COLOR,
+                  size: (text == StringValues.POST)
+                      ? ScreenUtil.instance.setHeight(34)
+                      : ScreenUtil.instance.setHeight(32),
                 ),
               ),
             ),
             Text(
               text,
-              style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
             )
           ],
         ),
@@ -115,9 +113,6 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(
-        height: defaultHeight, width: defaultWidth, allowFontScaling: false)
-      ..init(context);
     return SafeArea(
       child: Scaffold(
         body: Column(

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dasavatar_app/model/user.dart';
 import 'package:dasavatar_app/utils/global.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class UserService {
   UserService._();
@@ -33,6 +34,9 @@ class UserService {
         await documentReference.update(User.toJson(data));
         user = data;
       } else {
+        user.createdAt = DateTime.now().toString();
+        user.lastLoggedIn = DateTime.now().toString();
+        user.deviceToken = await FirebaseMessaging().getToken();
         await documentReference.set(data);
         print("User added");
       }

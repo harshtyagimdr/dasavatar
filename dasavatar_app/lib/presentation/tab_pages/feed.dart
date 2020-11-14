@@ -16,7 +16,7 @@ class _FeedState extends State<Feed> {
     return SafeArea(
         child: Scaffold(
                   body: Container(
-              color: Styles.PRIMARY_COLOR,
+              color: Styles.WHITE_COLOR,
     ),
         ),);
   }

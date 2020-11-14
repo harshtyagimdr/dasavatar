@@ -68,12 +68,12 @@ mixin _$UserStore on _UserStore, Store {
         .run(() => super.login(email: email, password: password));
   }
 
-  final _$signUoAsyncAction = AsyncAction('signUo');
+  final _$signUpAsyncAction = AsyncAction('signUp');
 
   @override
-  Future signUo({User user, String password}) {
-    return _$signUoAsyncAction
-        .run(() => super.signUo(user: user, password: password));
+  Future signUp({User user, String password}) {
+    return _$signUpAsyncAction
+        .run(() => super.signUp(user: user, password: password));
   }
 
   final _$getUserAsyncAction = AsyncAction('getUser');

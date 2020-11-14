@@ -34,11 +34,11 @@ abstract class _UserStore with Store {
   }
 
   @action
-  signUo({User user, String password}) async {
+  signUp({User user, String password}) async {
     isLoading = true;
     try {
       String uid =
-          await authService.login(email: user.email, passowrd: password);
+          await authService.signUp(email: user.email, passowrd: password);
       if (uid != null) {
         user.uid = uid;
         await createUser(user);

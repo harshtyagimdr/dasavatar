@@ -1,4 +1,6 @@
-import 'package:dasavatar_app/presentation/splashpage.dart';
+import 'package:dasavatar_app/presentation/home_page.dart';
+import 'package:dasavatar_app/presentation/splash_page.dart';
+import 'package:dasavatar_app/presentation/user_access_page.dart';
 import 'package:dasavatar_app/store/user_store.dart';
 import 'package:dasavatar_app/utils/string_values.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,7 +33,13 @@ class Dasavatar extends StatelessWidget {
           ),
           initialRoute: SplashPage.routeNamed,
           routes: {
-            SplashPage.routeNamed: (BuildContext context) => SplashPage(),
+            SplashPage.routeNamed: (BuildContext context) => Scaffold(
+                  body: SplashPage(),
+                ),
+            UserAccessPage.routeNamed: (BuildContext context) =>
+                Scaffold(body: UserAccessPage()),
+            HomePage.routeNamed: (BuildContext context) =>
+                Scaffold(body: HomePage()),
           }),
     );
   }

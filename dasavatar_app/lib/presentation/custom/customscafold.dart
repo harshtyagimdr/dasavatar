@@ -19,14 +19,14 @@ class CustomScaffold extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Styles.PRIMARY_COLOR,
+          backgroundColor: Styles.WHITE_COLOR,
           automaticallyImplyLeading: false,
           title: Row(
             children: [
               IconButton(
                 icon: new Icon(
                   Icons.arrow_back,
-                  color: Styles.ICON_COLOR,
+                  color: Styles.PRIMARY_COLOR,
                   size: 28,
                 ),
                 onPressed: appbarOnTap,
