@@ -8,8 +8,6 @@ const Profile = () => {
             <div className=''>
                 <br></br>
                 <br></br>
-                <br></br>
-                <br></br>
                 <ProfileImage />
                 <br></br>
                 <hr style={{height:5}} className='blue darken-4'></hr>

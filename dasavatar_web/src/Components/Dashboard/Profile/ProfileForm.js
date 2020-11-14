@@ -6,17 +6,17 @@ const ProfileForm = () => {
             <form className="col s12">
                     <div className="row">
                         <div className="input-field col s6">
-                            <input placeholder="First Name" key="first_name" value="Steve" type="text" className="validate"></input>
+                            <input key="first_name" type="text" className="validate"></input>
                             <label for="first_name">First Name</label>
                         </div>
                         <div className="input-field col s6">
-                            <input key="last_name" placeholder='Last Name' type="text" value="Rogers" className="validate"></input>
+                            <input key="last_name" type="text" className="validate"></input>
                             <label for="last_name">Last Name</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input key="email" value='steve@company.com' placeholder='Email' type="email" className="validate"></input>
+                            <input key="email" type="email" className="validate"></input>
                             <label for="email">Email</label>
                         </div>
                     </div>
