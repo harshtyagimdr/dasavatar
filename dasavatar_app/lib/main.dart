@@ -14,7 +14,7 @@ class Dasavatar extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-        title: StringValue.APP_NAME,
+        title: StringValues.APP_NAME,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Colors.white,),
         initialRoute: SplashPage.routeNamed,

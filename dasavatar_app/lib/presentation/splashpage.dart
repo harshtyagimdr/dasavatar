@@ -1,3 +1,9 @@
+import 'package:dasavatar_app/presentation/tab_pages/feed.dart';
+import 'package:dasavatar_app/presentation/tab_pages/post.dart';
+import 'package:dasavatar_app/presentation/tab_pages/profile.dart';
+import 'package:dasavatar_app/utils/global.dart';
+import 'package:dasavatar_app/utils/string_values.dart';
+import 'package:dasavatar_app/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,11 +16,11 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  int currentPage;
+  int _currentPage;
   _getBody() {
-    switch (currentPage) {
+    switch (_currentPage) {
       case 0:
-        return HomePage();
+        return Feed();
         break;
       case 1:
         return Post();
@@ -23,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
         return Profile();
         break;
       default:
-        return HomePage();
+        return Feed();
     }
   }
 
@@ -41,15 +47,13 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             _getBottomBarItem(
-                index: 0, icontab: Icons.home, text: Strings.HOME),
+                index: 0, icontab: Icons.home, text: StringValues.FEED),
             _getBottomBarItem(
                 index: 1,
                 icontab: Icons.youtube_searched_for,
-                text: Strings.SEARCH),
+                text: StringValues.POST),
             _getBottomBarItem(
-                index: 2, icontab: Icons.shopping_cart, text: Strings.CART),
-            _getBottomBarItem(
-                index: 3, icontab: Icons.more_horiz, text: Strings.MORE),
+                index: 2, icontab: Icons.shopping_cart, text: StringValues.PROFILE),
           ],
         ),
       ),
@@ -64,13 +68,13 @@ class _SplashPageState extends State<SplashPage> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          currentPage = index;
+          _currentPage = index;
         });
       },
       child: Container(
         decoration: BoxDecoration(
           border: Border(
-              bottom: currentPage == index
+              bottom: _currentPage == index
                   ? BorderSide(
                       width: ScreenUtil.instance.setHeight(5),
                       color: Styles.BOTTOMNAVIGATIONBAR_BOTTOM_BORDER_COLOR)
