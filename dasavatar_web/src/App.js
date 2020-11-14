@@ -3,18 +3,20 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Dashboard from './Components/Dashboard/Dashboard';
 import Profile from './Components/Dashboard/Profile';
 import Navbar from './Components/Dashboard/Navbar';
+import Footer from './Components/Dashboard/Footer';
 
 class App extends Component {
  render(){
    return(
      <BrowserRouter>
      <div>
-       <Navbar />
-     <Switch>
+        <Navbar />
+        <Switch>
             <Route exact path='/'component={Dashboard} />
             <Route path='/profile'component={Profile} />
            
           </Switch>
+        <Footer />
      </div>
      </BrowserRouter>
    )
