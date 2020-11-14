@@ -31,7 +31,7 @@ const rrfProps = {
 };
 function AuthIsLoaded({ children }) {
   const auth = useSelector(state => state.firebase.auth)
-  if (!isLoaded(auth)) return <div className=" container center "><Loader
+  if (!isLoaded(auth)) return <div style={{textAlign:'center'}}><Loader
   type="ThreeDots"
   color="#00BFFF"
   height={100}
