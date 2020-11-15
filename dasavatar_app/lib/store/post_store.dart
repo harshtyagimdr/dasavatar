@@ -1,8 +1,8 @@
 import 'dart:io';
 
+import 'package:dasavatar_app/model/address.dart';
 import 'package:dasavatar_app/model/post.dart';
 import 'package:dasavatar_app/utils/global.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
 
 part 'post_store.g.dart';
@@ -73,11 +73,12 @@ abstract class _PostStore with Store {
         bool per = await locationPermission();
         if (per) {
           isLoading = true;
-          Position position = await locationService.getLatLong();
+          Address address = await locationService.getCurrentLocationAddress();
           print("response in fetch address ");
-          if (position != null) {
-            post.latitude = position.latitude.toString();
-            post.longitude = position.longitude.toString();
+          if (address != null) {
+            post.latitude = address.latitude.toString();
+            post.longitude = address.longitude.toString();
+            post.addressString = address.addressString;
           }
         }
       }

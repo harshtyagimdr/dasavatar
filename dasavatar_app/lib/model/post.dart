@@ -36,5 +36,8 @@ abstract class _Post with Store {
   String longitude;
 
   @observable
+  String addressString;
+
+  @observable
   bool identity;
 }

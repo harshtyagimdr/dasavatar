@@ -1,5 +1,7 @@
 import 'package:dasavatar_app/presentation/tab_pages/feed.dart';
 import 'package:dasavatar_app/presentation/tab_pages/add_post_page.dart';
+import 'package:dasavatar_app/presentation/tab_pages/info.dart';
+import 'package:dasavatar_app/presentation/tab_pages/post.dart';
 import 'package:dasavatar_app/presentation/tab_pages/profile.dart';
 import 'package:dasavatar_app/utils/string_values.dart';
 import 'package:dasavatar_app/utils/styles.dart';
@@ -29,6 +31,9 @@ class _HomePageState extends State<HomePage> {
       case 2:
         return Profile();
         break;
+      case 3:
+        return Info();
+        break;
       default:
         return Feed();
     }
@@ -56,6 +61,10 @@ class _HomePageState extends State<HomePage> {
                 index: 2,
                 icontab: Icons.account_circle,
                 text: StringValues.PROFILE),
+              _getBottomBarItem(
+                index: 3,
+                icontab: Icons.info,
+                text: 'About'),
           ],
         ),
       ),

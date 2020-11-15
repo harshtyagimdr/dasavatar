@@ -14,6 +14,7 @@ class CustomLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+//<<<<<<< HEAD
       width: ScreenUtil.instance.setWidth(115),
       height: ScreenUtil.instance.setWidth(115),
       decoration: BoxDecoration(
@@ -33,10 +34,15 @@ class CustomLogo extends StatelessWidget {
           : url != null
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
-                    url,
-                    fit: BoxFit.contain,
-                  ),
+                  child: url.contains('http')
+                      ? Image.network(
+                          url,
+                          fit: BoxFit.contain,
+                        )
+                      : Image.asset(
+                          url,
+                          fit: BoxFit.contain,
+                        ),
                 )
               : Container(
                   padding: const EdgeInsets.all(16),

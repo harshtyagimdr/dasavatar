@@ -1,6 +1,7 @@
 import 'package:dasavatar_app/model/store_observer.dart';
 import 'package:dasavatar_app/model/user.dart';
 import 'package:dasavatar_app/presentation/custom/custom_button.dart';
+import 'package:dasavatar_app/presentation/custom/customlogo.dart';
 import 'package:dasavatar_app/presentation/custom/customtextfield.dart';
 import 'package:dasavatar_app/presentation/splash_page.dart';
 import 'package:dasavatar_app/store/user_store.dart';
@@ -8,7 +9,6 @@ import 'package:dasavatar_app/utils/global.dart';
 import 'package:dasavatar_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 
 class UserAccessPage extends StatefulWidget {
   static const String routeNamed = 'UserAccessPage';
@@ -27,35 +27,37 @@ class _UserAccessPageState extends State<UserAccessPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StoreObserver<UserStore>(
-          builder: (UserStore userStore, BuildContext context) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: isSignUp
-                    ? _signUpWidget(userStore)
-                    : _signInWidget(userStore),
+    return SafeArea(
+      child: Scaffold(
+        body: StoreObserver<UserStore>(
+            builder: (UserStore userStore, BuildContext context) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: isSignUp
+                      ? _signUpWidget(userStore)
+                      : _signInWidget(userStore),
+                ),
               ),
-            ),
-            CustomButton(
-              onTap: () {
-                setState(() {
-                  isSignUp = !isSignUp;
-                });
-              },
-              text: isSignUp
-                  ? 'Already Have an account!\nSign In'
-                  : 'Don\'t Have an account!\nSign Up',
-              textColor: Styles.BLACK_COLOR,
-              buttonColor: Styles.TRANSPARENT_COLOR,
-              fontSize: 14,
-            ),
-          ],
-        );
-      }),
+              CustomButton(
+                onTap: () {
+                  setState(() {
+                    isSignUp = !isSignUp;
+                  });
+                },
+                text: isSignUp
+                    ? 'Already Have an account!\nSign In'
+                    : 'Don\'t Have an account!\nSign Up',
+                textColor: Styles.BLACK_COLOR,
+                buttonColor: Styles.TRANSPARENT_COLOR,
+                fontSize: 14,
+              ),
+            ],
+          );
+        }),
+      ),
     );
   }
 
@@ -69,13 +71,23 @@ class _UserAccessPageState extends State<UserAccessPage> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: ScreenUtil.instance.setHeight(100),
+              height: ScreenUtil.instance.setHeight(32),
+            ),
+            Center(
+                child: CustomLogo(
+              url: 'assets/logo.jpeg',
+            )),
+            SizedBox(
+              height: ScreenUtil.instance.setHeight(50),
             ),
             Container(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Sign UP',
-                style: TextStyle(color: Styles.BLUE_GREY_COLOR, fontSize: 16),
+                'Sign Up',
+                style: TextStyle(
+                    color: Styles.BLUE_GREY_COLOR,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
                 textAlign: TextAlign.left,
               ),
             ),
@@ -84,32 +96,6 @@ class _UserAccessPageState extends State<UserAccessPage> {
               onSaved: (value) {
                 user.name = value;
               },
-            ),
-            InkWell(
-              onTap: () {
-                showDatePicker(
-                        context: context,
-                        initialDate: user.dob != null
-                            ? DateTime.parse(user.dob)
-                            : DateTime.now(),
-                        firstDate: DateTime(1900, 1, 1),
-                        lastDate: DateTime.now())
-                    .then((value) {
-                  if (value != null) {
-                    setState(() {
-                      user.dob = DateFormat('yyyy-MM-dd').format(value);
-                    });
-                  }
-                });
-              },
-              child: IgnorePointer(
-                child: CustomTextField(
-                  hintText: user.dob ?? 'Date Of Birth',
-                  validator: (value) {
-                    return null;
-                  },
-                ),
-              ),
             ),
             CustomTextField(
               hintText: 'Phone Number',
@@ -122,16 +108,18 @@ class _UserAccessPageState extends State<UserAccessPage> {
             CustomTextField(
               hintText: 'Email',
               validator: validateEmail,
+              textInputType: TextInputType.emailAddress,
               onSaved: (value) {
                 user.email = value;
               },
             ),
             CustomTextField(
-              hintText: 'Password',
-              onSaved: (value) {
-                password = value;
-              },
-            ),
+                hintText: 'Password',
+                onSaved: (value) {
+                  password = value;
+                },
+                textInputType: TextInputType.visiblePassword,
+                obstruct: true),
             CustomButton(
               text: 'Sign Up',
               isLoading: userStore.isLoading,
@@ -166,13 +154,23 @@ class _UserAccessPageState extends State<UserAccessPage> {
         child: Column(
           children: <Widget>[
             SizedBox(
+              height: ScreenUtil.instance.setHeight(32),
+            ),
+            Center(
+                child: CustomLogo(
+              url: 'assets/logo.jpeg',
+            )),
+            SizedBox(
               height: ScreenUtil.instance.setHeight(100),
             ),
             Container(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Sign IN',
-                style: TextStyle(color: Styles.BLUE_GREY_COLOR, fontSize: 16),
+                'Sign In',
+                style: TextStyle(
+                    color: Styles.BLUE_GREY_COLOR,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
                 textAlign: TextAlign.left,
               ),
             ),
@@ -182,12 +180,15 @@ class _UserAccessPageState extends State<UserAccessPage> {
               onSaved: (value) {
                 user.email = value;
               },
+              textInputType: TextInputType.emailAddress,
             ),
             CustomTextField(
               hintText: 'Password',
               onSaved: (value) {
                 password = value;
               },
+              textInputType: TextInputType.visiblePassword,
+              obstruct: true,
             ),
             CustomButton(
               text: 'Submit',

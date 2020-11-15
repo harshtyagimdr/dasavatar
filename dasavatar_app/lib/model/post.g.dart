@@ -16,6 +16,7 @@ Post _$PostFromJson(Map<String, dynamic> json) {
     ..created_at = json['created_at'] as String
     ..latitude = json['latitude'] as String
     ..longitude = json['longitude'] as String
+    ..addressString = json['addressString'] as String
     ..identity = json['identity'] as bool;
 }
 
@@ -28,6 +29,7 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'created_at': instance.created_at,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
+      'addressString': instance.addressString,
       'identity': instance.identity,
     };
 
@@ -172,6 +174,23 @@ mixin _$Post on _Post, Store {
       super.longitude = value;
       _$longitudeAtom.reportChanged();
     }, _$longitudeAtom, name: '${_$longitudeAtom.name}_set');
+  }
+
+  final _$addressStringAtom = Atom(name: '_Post.addressString');
+
+  @override
+  String get addressString {
+    _$addressStringAtom.context.enforceReadPolicy(_$addressStringAtom);
+    _$addressStringAtom.reportObserved();
+    return super.addressString;
+  }
+
+  @override
+  set addressString(String value) {
+    _$addressStringAtom.context.conditionallyRunInAction(() {
+      super.addressString = value;
+      _$addressStringAtom.reportChanged();
+    }, _$addressStringAtom, name: '${_$addressStringAtom.name}_set');
   }
 
   final _$identityAtom = Atom(name: '_Post.identity');

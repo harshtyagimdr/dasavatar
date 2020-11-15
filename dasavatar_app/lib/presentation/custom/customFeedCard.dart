@@ -15,8 +15,7 @@ class CustomFeedCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: ScreenUtil.instance.setHeight(20)),
       child: Card(
-        elevation: 10,
-
+        elevation: 5,
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20)

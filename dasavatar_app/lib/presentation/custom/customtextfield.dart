@@ -14,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   final Function validator;
   final IconData icon;
   final bool isPrefixIcon;
+    final bool obstruct;
 
   CustomTextField({
     this.labelText,
@@ -26,6 +27,7 @@ class CustomTextField extends StatelessWidget {
     this.textInputType = TextInputType.text,
     this.icon = Icons.location_on,
     this.isPrefixIcon = false,
+    this.obstruct = false,
   });
 
   @override
@@ -45,6 +47,7 @@ class CustomTextField extends StatelessWidget {
       child: Padding(
         padding: (isPrefixIcon) ? EdgeInsets.all(0) : EdgeInsets.only(left: 16),
         child: TextFormField(
+          obscureText: obstruct,
             onSaved: onSaved,
             onChanged: onChanged,
             validator: validator ?? requiredString,
