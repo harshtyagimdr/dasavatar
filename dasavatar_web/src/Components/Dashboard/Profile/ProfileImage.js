@@ -1,11 +1,9 @@
 import React from 'react';
 
-const ProfileImage = () => {
+const ProfileImage = ({height, width, className}) => {
     return (
         <div>
-            <div className='center'>
-                <img className='circle responsive-img ' src='http://source.unsplash.com/200x200/?dogs'></img>
-            </div>
+            <img height={height} width={width} className={className} src='http://source.unsplash.com/200x200/?dogs'></img>
         </div>
     )
 }

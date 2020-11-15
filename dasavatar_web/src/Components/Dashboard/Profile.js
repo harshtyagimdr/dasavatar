@@ -8,9 +8,9 @@ const Profile = () => {
             <div className=''>
                 <br></br>
                 <br></br>
-                <ProfileImage />
-                <br></br>
-                <hr style={{height:5}} className='blue darken-4'></hr>
+                <div className='center'>
+                    <ProfileImage height="200" width="200" className='circle responsive-img' />
+                </div>
                 <br></br>
             </div>
             <div>

@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card, .card:hover {
+    border-radius: 20px;
+  }
+
+  .post-image {
+    margin-top: -15px;
+    border-radius: 20px;
+  }
+
+.post-category{
+  margin-top: -30px;
+}
+
+.card-upper-text {
+  margin-top: -5px;
+}

@@ -8,8 +8,8 @@ const NavBar = () => {
                 <div className="container">
                     <Link className="brand-logo left" to="/">DasAvatar</Link>
                     <ul className="right">
-                        <li><NavLink to="/">Dashboard</NavLink></li>
-                        <li><NavLink to="/profile">Profile</NavLink></li>
+                        <li><NavLink to="/profile"><i class="material-icons">person_outline</i></NavLink></li>
+                        <li><NavLink to="/profile">Logout</NavLink></li>
                     </ul>
                 </div>
             </nav> 
