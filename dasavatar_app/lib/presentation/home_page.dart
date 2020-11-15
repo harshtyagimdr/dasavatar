@@ -86,7 +86,6 @@ class _HomePageState extends State<HomePage> {
         ),
         alignment: Alignment.center,
         height: ScreenUtil.instance.setHeight(70),
-        width: ScreenUtil.instance.setWidth(45),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
