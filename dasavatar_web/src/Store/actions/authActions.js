@@ -36,7 +36,7 @@ export const signIn = (credentials) => {
         return firestore.collection('user_details').doc(resp.user.uid).set({
           name: `${newUser.firstName} ${newUser.lastName}` ,
           email:newUser.email,
-          createdAt:new Date(),
+          createdAt:new Date().toDateString(),
           deviceToken:"",
           dob:'',
           imgUrl:'',
