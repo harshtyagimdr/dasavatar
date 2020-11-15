@@ -21,10 +21,9 @@ const Post = (props) => {
             <Link to={`/post/${post.id}`}>
                 <div className="card hoverable black-text">
                     <div className='row center-align valign-wrapper profile-name'>
-                        <div className='col s1'></div>
                         <div className='col s2 card-upper-image'>
                         <br></br>
-                            {post?.identity &&  <ProfileImage height="30" width="30" className="circle" imgUrl={user?.imgUrl} />}
+                            {post?.identity? <ProfileImage height="30" width="30" className="circle" imgUrl={user?.imgUrl} />:<div style={{height:35}}/>}
                         </div>
                         <div className='col s8 valign-wrapper card-upper-text'>
                          {post?.identity &&  <span className=''>{user?.name}</span>}
