@@ -69,7 +69,7 @@ class SignUp extends Component {
     <div className="bg" style={{height:591}}></div>
     
     <form className='signup-form'>
-    <h1 style={{color:'white'}}>DasAvatar</h1>
+    <h5 style={{color:'white'}}>DasAvatar</h5>
         <header style={{height:125}}>
             <img src="https://assets.codepen.io/3931482/internal/avatars/users/default.png?format=auto&height=80&version=1592223909&width=80"/>
         </header>
