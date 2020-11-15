@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dasavatar_app/model/store_observer.dart';
 import 'package:dasavatar_app/model/user.dart';
 import 'package:dasavatar_app/presentation/custom/custom_button.dart';
-import 'package:dasavatar_app/presentation/custom/customlogo.dart';
+import 'package:dasavatar_app/presentation/custom/custom_logo.dart';
 import 'package:dasavatar_app/presentation/custom/customprofiletextcard.dart';
 import 'package:dasavatar_app/presentation/custom/customtextfield.dart';
 import 'package:dasavatar_app/presentation/splash_page.dart';

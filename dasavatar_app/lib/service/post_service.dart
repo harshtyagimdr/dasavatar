@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dasavatar_app/model/post.dart';
+import 'package:dasavatar_app/service/notification_service.dart';
 import 'package:dasavatar_app/utils/global.dart';
 
 class PostService {
@@ -13,7 +14,13 @@ class PostService {
     try {
       await _firestore.collection('posts').snapshots().listen((event) {
         event.docs.forEach((element) {
-          addPostInStore(Post.fromJson(element.data()));
+          Post post = Post.fromJson(element.data());
+          addPostInStore(post);
+//          NotificationService.getInstance().showNow(post.category +
+//              "\n" +
+//              (post.description.length > 10
+//                  ? (post.description.substring(0, 10) + "...")
+//                  : post.description));
         });
         if (event.docs.isEmpty) {
           addPostInStore(null);

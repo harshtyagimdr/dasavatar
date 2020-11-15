@@ -1,5 +1,5 @@
 import 'package:dasavatar_app/model/store_observer.dart';
-import 'package:dasavatar_app/presentation/custom/customFeedCard.dart';
+import 'package:dasavatar_app/presentation/custom/custom_feed_card.dart';
 import 'package:dasavatar_app/store/post_store.dart';
 import 'package:dasavatar_app/utils/styles.dart';
 import 'package:flutter/cupertino.dart';

@@ -39,7 +39,7 @@ class CustomImageContainer extends StatelessWidget {
               : image != null
                   ? Image.network(
                       image,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fill,
                     )
                   : Container(
                       padding: const EdgeInsets.all(16),

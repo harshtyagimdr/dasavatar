@@ -36,11 +36,11 @@ class CustomLogo extends StatelessWidget {
                   child: url.contains('http')
                       ? Image.network(
                           url,
-                          fit: BoxFit.contain,
+                          fit: BoxFit.fill,
                         )
                       : Image.asset(
                           url,
-                          fit: BoxFit.contain,
+                          fit: BoxFit.fill,
                         ),
                 )
               : Container(

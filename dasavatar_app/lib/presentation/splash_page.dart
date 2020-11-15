@@ -1,4 +1,4 @@
-import 'package:dasavatar_app/presentation/custom/customlogo.dart';
+import 'package:dasavatar_app/presentation/custom/custom_logo.dart';
 import 'package:dasavatar_app/presentation/home_page.dart';
 import 'package:dasavatar_app/presentation/user_access_page.dart';
 import 'package:dasavatar_app/store/user_store.dart';

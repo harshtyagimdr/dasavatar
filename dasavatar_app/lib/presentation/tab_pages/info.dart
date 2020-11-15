@@ -1,4 +1,4 @@
-import 'package:dasavatar_app/presentation/custom/customlogo.dart';
+import 'package:dasavatar_app/presentation/custom/custom_logo.dart';
 import 'package:dasavatar_app/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
