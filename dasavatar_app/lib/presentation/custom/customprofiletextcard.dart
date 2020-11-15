@@ -36,9 +36,7 @@ class CustomProfileTextCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: (margin)
-            ? EdgeInsets.symmetric(vertical: ScreenUtil.instance.setHeight(0))
-            : EdgeInsets.symmetric(vertical: ScreenUtil.instance.setHeight(12)),
+        margin: EdgeInsets.only(bottom: ScreenUtil.instance.setHeight(16)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
