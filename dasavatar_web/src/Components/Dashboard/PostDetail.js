@@ -12,19 +12,21 @@ const PostDetail = (props) => {
     return (
         <div className='container'>
             <div className='row'>
-                <h4>On Time At Location</h4>
             </div>
             <div className='center'>
-                <img className='post-image responsive-img' height="200" width='350' src="https://lorempixel.com/120/120/nature/6"></img>
+                <img className='post-image responsive-img' height="200" width='350' src={post?.imageUrl || "https://lorempixel.com/120/120/nature/6"}></img>
             </div>
             <div className='row'>
-                <h5>Post Category</h5>
+    <h5>{post?.category}</h5>
                 <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor fuga veniam vel voluptates consectetur laudantium nulla minima amet magnam eaque illo accusamus blanditiis pariatur facilis praesentium, eveniet voluptas alias maxime? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor fuga veniam vel voluptates consectetur laudantium nulla minima amet magnam eaque illo accusamus blanditiis pariatur facilis praesentium, eveniet voluptas alias maxime? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor fuga veniam vel voluptates consectetur laudantium nulla minima amet magnam eaque illo accusamus blanditiis pariatur facilis praesentium, eveniet voluptas alias maxime?
+                    {post?.description}
                 </p>
             </div>
+            {post?.addressString &&<div className='row'>
+                <h6>Location: {post?.addressString}   </h6>
+            </div>}
             <div className='row'>
-                <h6>Posted by   </h6>
+                <h6>Date: {post?.created_at}   </h6>
             </div>
         </div>
     )

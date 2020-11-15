@@ -41,10 +41,7 @@ const Post = (props) => {
                     <h5 className='post-category'>{post?.category}</h5>
                         <p> {post?.description}</p>
                     </div>
-                    <div className="card-action">
-                        <span className='left'>Location</span>
-                        <br></br>
-                    </div>
+                   
                 </div>
             </Link>
         </div>
