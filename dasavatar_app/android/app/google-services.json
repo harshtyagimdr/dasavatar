@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "1031947606592-gl0m5l7g2o5b7llah43vr15aimnau35r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dasavatar.app",
+            "certificate_hash": "a746e73fa55c0fe1865f4edb8e90f8829511a820"
+          }
+        },
+        {
+          "client_id": "1031947606592-fa1l1vcfp5fchl4ck8pqmbr38baocv1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dasavatar.app",
+            "certificate_hash": "d19ccb0b434bce6a127ba7667ce8aa3a35ed75bd"
+          }
+        },
+        {
           "client_id": "1031947606592-ga6ecobma4gk9d0l14gf1ooompu46ijb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
