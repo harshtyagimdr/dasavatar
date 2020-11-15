@@ -8,20 +8,12 @@ class VerifyService {
   factory VerifyService.getInstance() => _instance;
   static final VerifyService _instance = VerifyService._();
 
-  Future<Map<String, dynamic>> verifyImage({String url}) async {
-    try {
-      final response = await http.post("https://dasavatar.herokuapp.com/image",
-          body: json.encode({"image": url}));
-      return _getResponse(response);
-    } catch (e) {
-      throw e;
-    }
-  }
-
   Future<Map<String, dynamic>> verifyCrowd({String url}) async {
     try {
       final response = await http.post("https://dasavatar.herokuapp.com/crowd",
-          body: json.encode({"image": url}));
+          body: json.encode({"image": url}),
+          headers: {'content-Type': "application/json"});
+      print(url);
       return _getResponse(response);
     } catch (e) {
       throw e;

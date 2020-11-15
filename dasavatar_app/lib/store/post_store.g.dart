@@ -26,6 +26,23 @@ mixin _$PostStore on _PostStore, Store {
     }, _$isLoadingAtom, name: '${_$isLoadingAtom.name}_set');
   }
 
+  final _$isUploadingAtom = Atom(name: '_PostStore.isUploading');
+
+  @override
+  bool get isUploading {
+    _$isUploadingAtom.context.enforceReadPolicy(_$isUploadingAtom);
+    _$isUploadingAtom.reportObserved();
+    return super.isUploading;
+  }
+
+  @override
+  set isUploading(bool value) {
+    _$isUploadingAtom.context.conditionallyRunInAction(() {
+      super.isUploading = value;
+      _$isUploadingAtom.reportChanged();
+    }, _$isUploadingAtom, name: '${_$isUploadingAtom.name}_set');
+  }
+
   final _$postsAtom = Atom(name: '_PostStore.posts');
 
   @override
@@ -50,12 +67,19 @@ mixin _$PostStore on _PostStore, Store {
     return _$getAllPostAsyncAction.run(() => super.getAllPost());
   }
 
+  final _$uploadingImageAsyncAction = AsyncAction('uploadingImage');
+
+  @override
+  Future uploadingImage({File imageFile, String id}) {
+    return _$uploadingImageAsyncAction
+        .run(() => super.uploadingImage(imageFile: imageFile, id: id));
+  }
+
   final _$uploadPostAsyncAction = AsyncAction('uploadPost');
 
   @override
-  Future uploadPost({Post post, File imageFile}) {
-    return _$uploadPostAsyncAction
-        .run(() => super.uploadPost(post: post, imageFile: imageFile));
+  Future uploadPost({Post post}) {
+    return _$uploadPostAsyncAction.run(() => super.uploadPost(post: post));
   }
 
   final _$clearStoreAsyncAction = AsyncAction('clearStore');

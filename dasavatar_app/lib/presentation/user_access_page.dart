@@ -144,7 +144,7 @@ class _UserAccessPageState extends State<UserAccessPage> {
                   } catch (e) {
                     print("signup error");
                     print(e);
-                    showSnackbar(e, context);
+                    showSnackbar(e.toString(), context);
                   }
                 }
               },
@@ -202,7 +202,7 @@ class _UserAccessPageState extends State<UserAccessPage> {
                   } catch (e) {
                     print("error in login");
                     print(e);
-                    showSnackbar(e, context);
+                    showSnackbar(e.toString(), context);
                   }
                 }
               },

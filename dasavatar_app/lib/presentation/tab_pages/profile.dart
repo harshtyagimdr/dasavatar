@@ -87,7 +87,7 @@ class _ProfileState extends State<Profile> {
                               } catch (e) {
                                 print("error in logout");
                                 print(e);
-                                showSnackbar(e, context);
+                                showSnackbar(e.toString(), context);
                               }
                             },
                           ),
@@ -97,32 +97,6 @@ class _ProfileState extends State<Profile> {
                   );
                 },
               ),
-//=======
-//        body: Container(
-//          color: Styles.WHITE_COLOR,
-//          child: Center(
-//            child: StoreObserver<UserStore>(
-//              builder: (UserStore userStore, BuildContext context) {
-//                return Container(
-//                  height: ScreenUtil.instance.setHeight(70),
-//                  child: CustomButton(
-//                    text: 'Logout',
-//                    isLoading: userStore.isLoading,
-//                    onTap: () async {
-//                      try {
-//                        await userStore.logout();
-//                        Navigator.pushNamedAndRemoveUntil(
-//                            context, SplashPage.routeNamed, (route) => false);
-//                      } catch (e) {
-//                        print("error in logout");
-//                        print(e);
-//                        showSnackbar(e, context);
-//                      }
-//                    },
-//                  ),
-//                );
-//              },
-//>>>>>>> efb3fe77506072cdcd62558ead895b15981c74ce
             ),
           ),
         ),

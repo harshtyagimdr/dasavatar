@@ -14,6 +14,9 @@ abstract class _PostStore with Store {
   bool isLoading = false;
 
   @observable
+  bool isUploading = false;
+
+  @observable
   ObservableMap<String, Post> posts;
 
   @action
@@ -42,17 +45,30 @@ abstract class _PostStore with Store {
   }
 
   @action
-  uploadPost({Post post, File imageFile}) async {
-    if (posts == null) {
-      posts = ObservableMap<String, Post>();
-    }
-    isLoading = true;
+  uploadingImage({File imageFile, String id}) async {
     try {
       if (imageFile != null) {
+        isUploading = true;
         String url = await uploadFileFirebase.uploadFile(
-            folderName: 'user_profile', fileName: post.id, file: imageFile);
-        post.imageUrl = url;
+            file: imageFile, folderName: 'posts', fileName: id);
+        Map<String, dynamic> response =
+            await verifyService.verifyCrowd(url: url);
+        isUploading = false;
+        if (response['data']['status']) return url;
       }
+      isUploading = false;
+      return null;
+    } catch (e) {
+      isUploading = false;
+      print(e);
+      throw e;
+    }
+  }
+
+  @action
+  uploadPost({Post post}) async {
+    isLoading = true;
+    try {
       if (post.latitude == null) {
         bool per = await locationPermission();
         if (per) {
@@ -66,8 +82,7 @@ abstract class _PostStore with Store {
         }
       }
       await postService.uploadPost(post: post);
-      posts.addAll({post.id: post});
-      isLoading = false;
+      addPostInStore(post);
     } catch (e) {
       isLoading = false;
       print("upload Post in post store");

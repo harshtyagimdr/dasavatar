@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dasavatar_app/model/post.dart';
+import 'package:dasavatar_app/utils/global.dart';
 
 class PostService {
   PostService._();
@@ -27,6 +28,8 @@ class PostService {
 
   Future uploadPost({Post post}) async {
     try {
+      post.user_id = await preferenceService.getUID();
+      post.created_at = DateTime.now().toString();
       DocumentReference documentReference =
           _firestore.collection('posts').doc(post.id);
       await documentReference.set(Post.toJson(post));

@@ -1,5 +1,5 @@
 import 'package:dasavatar_app/presentation/tab_pages/feed.dart';
-import 'package:dasavatar_app/presentation/tab_pages/post.dart';
+import 'package:dasavatar_app/presentation/tab_pages/add_post_page.dart';
 import 'package:dasavatar_app/presentation/tab_pages/profile.dart';
 import 'package:dasavatar_app/utils/string_values.dart';
 import 'package:dasavatar_app/utils/styles.dart';
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         return Feed();
         break;
       case 1:
-        return Post();
+        return AddPostPage();
         break;
       case 2:
         return Profile();
