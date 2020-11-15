@@ -22,11 +22,7 @@ class SignUp extends Component {
     this.props.signUp(this.state);
   }
   componentDidMount() {
-    const location= JSON.parse(window.localStorage.getItem('location'));
-    if(location){
-      this.getAddress(location?.latitude,location?.longitude)
-    }
-    if (navigator.geolocation) {
+        if (navigator.geolocation) {
       navigator.geolocation.watchPosition(function(position) {
         const location={
             longitude:position?.coords?.longitude,
@@ -37,28 +33,7 @@ class SignUp extends Component {
       });
     }
   }
- getAddress(lat,lng) { 
-  var latitude = "latitude=" + lat;
-  var longitude = "&longitude=" + lng;
-  var query = latitude + longitude + "&localityLanguage=en";
 
-  const Http = new XMLHttpRequest();
-
-  var bigdatacloud_api =
-    "https://api.bigdatacloud.net/data/reverse-geocode-client?";
-
-  bigdatacloud_api += query;
-
-  Http.open("GET", bigdatacloud_api);
-  Http.send();
-
-  Http.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var myObj = JSON.parse(this.responseText);
-      console.log(myObj);
-    }
-  }
-}
 
   render() {
     const {auth,authError}=this.props

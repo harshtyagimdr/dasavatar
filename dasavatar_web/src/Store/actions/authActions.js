@@ -52,3 +52,16 @@ export const signIn = (credentials) => {
       });
     }
   }
+
+  export const profileUpdate = (user) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+      const firestore = getFirestore();
+        return firestore.collection('user_details').doc(user.uid).set({
+          ...user,
+      }).then(() => {
+        dispatch({ type: 'PROFILE_UPDATE_SUCCESS' });
+      }).catch((err) => {
+        dispatch({ type: 'PROFILE_UPDATE_ERROR', err});
+      });
+    }
+  }

@@ -4,14 +4,16 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
+import {profileUpdate} from '../../../Store/actions/authActions';
+import firebase from '../../../Config/fbConfig'
 
 class ProfileForm extends Component {
     
     state = {
-        name: null,
-        phone: null,
-        date: null,
-        image: null,
+        name: "",
+        phone: "",
+        date: "",
+        image: "",
         isLocationUpdate: false
     }
 
@@ -20,11 +22,72 @@ class ProfileForm extends Component {
           [e.target.id]: e.target.value
         });
     }
-
+    componentDidMount() {
+        if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(function(position) {
+        const location={
+            longitude:position?.coords?.longitude,
+            latitude:position?.coords?.latitude,
+        }
+        window.localStorage.setItem('location', JSON.stringify(location));
+ 
+      });
+    }
+  }
+  _getURL=(bucketName,user)=>{
+    let storageReference=firebase.storage().ref()
+    storageReference.child(`${bucketName}/${user.uid}`).getDownloadURL().then(
+      (url)=>{
+        let data={
+            ...user,
+            imgUrl:url
+        }
+       
+        this.props.profileUpdate(data);
+        alert("Your Profile is successfully Updated.")
+      } 
+    )
+    return true;
+   
+  }
     handleSubmit = (e) => {
         e.preventDefault();
-        
-        console.log(this.state);
+        let location;
+        if(this.state.isLocationUpdate){
+            location=JSON.parse(window.localStorage.getItem('location'))
+        }
+        const user={
+            name: this.state.name!==""?this.state.name:this.props.user_details?.name ,
+            email:this.props.user_details?.email,
+            createdAt:new Date().toDateString(),
+            deviceToken:this.props.user_details?.deviceToken,
+            dob:this.state.date!==""?this.state.date:this.props.user_details?.dob,
+            imgUrl:this.props.user_details?.imgUrl,
+            phoneNumber:this.state.phone!==""?this.state.phone:this.props.user_details?.phoneNumber,
+            uid:this.props.user_details?.uid,
+            longitude:this.state.isLocationUpdate?location.longitude:this.props.user_details?.longitude,
+            latitude:this.state.isLocationUpdate?location.latitude:this.props.user_details?.latitude
+          }
+          if(this.state.image){
+        var temp = document.getElementById("image"); 
+ 
+        var selectedFile = temp.files[0];
+        let bucketName="user_profile";
+       const  fileType = selectedFile.type;
+      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png','image/jpg'];
+      if (!validImageTypes.includes(fileType)) {
+        alert("Please upload valid file");
+       
+      }else{
+            let storageRef=firebase.storage().ref(`${bucketName}/${this.props.user_details.uid}`);
+          storageRef.put(selectedFile).then(()=>{this._getURL(bucketName,user)});
+      }
+    }else{
+      
+        this.props.profileUpdate(user);
+        alert("Your Profile is successfully Updated.")
+    }
+  
     }
 
     render() {
@@ -33,7 +96,7 @@ class ProfileForm extends Component {
         return (
             <>
             <div className='center' style={{marginTop:10}}>
-                        <ProfileImage height="200" width="200" className='circle responsive-img' />
+                        <ProfileImage height="200" width="200" className='circle' imgUrl={user_details?.imgUrl}/>
                 <h6>{user_details?.email}</h6>
                     </div>
             <div className="row">
@@ -98,9 +161,14 @@ const mapStateToProps=(state)=>{
     user_details: user,
     }
   }
+  const mapDispatchToProps=(dispatch)=>{
+    return{
+        profileUpdate:(user)=>dispatch(profileUpdate(user))
+    }
+  }
     
   export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps,mapDispatchToProps),
     firestoreConnect([
       {collection:'user_details'},
       

@@ -16,7 +16,7 @@ const NavBar = (props) => {
                     {auth?.uid &&<ul className="right">
                         <li className='info'><NavLink to="/profile"><i className="material-icons">info_outline</i></NavLink></li>
                         <li><NavLink to="/profile">
-                            <ProfileImage height="35" width="35" className="nav-profile circle responsive-img" imgUrl={user_details?.imgUrl} /></NavLink></li>
+                            <ProfileImage height="35" width="35" className="nav-profile circle" imgUrl={user_details?.imgUrl} /></NavLink></li>
                         <li className='info'><a onClick={props.signOut}><i className="fa fa-sign-out material-icons"></i></a></li>
                     </ul>}
                 </div>
