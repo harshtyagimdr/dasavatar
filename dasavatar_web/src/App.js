@@ -7,6 +7,7 @@ import Footer from './Components/Dashboard/Footer';
 import PostDetail from './Components/Dashboard/PostDetail';
 import SignIn from './Components/Auth/SignIn';
 import SignUp from './Components/Auth/SignUp';
+import Info from './Components/Dashboard/Info';
 
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
             <Route path='/post/:id'component={PostDetail} />
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
+            <Route exact path='/about' component={Info} />
            
            
           </Switch>
