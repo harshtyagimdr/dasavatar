@@ -7,7 +7,7 @@ const Post = () => {
         <div className="col s12 m6 l4">
             <Link to='/post'>
                 <div className="card hoverable black-text">
-                    <div className='row center-align valign-wrapper'>
+                    <div className='row center-align valign-wrapper profile-name'>
                         <div className='col s1'></div>
                         <div className='col s2 card-upper-image'>
                         <br></br>
