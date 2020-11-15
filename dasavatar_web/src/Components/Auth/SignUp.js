@@ -8,8 +8,8 @@ class SignUp extends Component {
   state = {
     email: '',
     password: '',
-    firstName: '',
-    lastName: '',
+    name: '',
+    phoneNumber:'',
   }
   handleChange = (e) => {
     this.setState({
@@ -75,10 +75,10 @@ class SignUp extends Component {
         </header>
         
         <div className="inputs">
+        <input type="text" id='name' onChange={this.handleChange} placeholder={'Name'} required/>
         <input type="email" id='email' onChange={this.handleChange} placeholder={'Email Address'} required/>
         <input type="password" id='password' onChange={this.handleChange} placeholder={'Password'} required />
-        <input type="text" id='firstName' onChange={this.handleChange} placeholder={'First Name'} required/>
-        <input type="text" id='lastName' onChange={this.handleChange} placeholder={'Last Name'} required/>
+        <input type="number" id='phoneNumber' onChange={this.handleChange} placeholder={'Mobile No.'} />
 
             {authError ? <p style={{color:'black'}}>{authError}</p>:null}
         </div>

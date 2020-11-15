@@ -34,13 +34,13 @@ export const signIn = (credentials) => {
         newUser.password,
       ).then(resp => {
         return firestore.collection('user_details').doc(resp.user.uid).set({
-          name: `${newUser.firstName} ${newUser.lastName}` ,
+          name: newUser.name ,
           email:newUser.email,
           createdAt:new Date().toDateString(),
           deviceToken:"",
           dob:'',
           imgUrl:'',
-          phoneNumber:'',
+          phoneNumber:newUser.phoneNumber,
           uid:resp.user.uid,
           longitude:location.longitude,
           latitude:location.latitude
