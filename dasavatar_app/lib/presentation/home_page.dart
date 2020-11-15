@@ -1,5 +1,5 @@
-import 'package:dasavatar_app/presentation/tab_pages/feed.dart';
 import 'package:dasavatar_app/presentation/tab_pages/add_post_page.dart';
+import 'package:dasavatar_app/presentation/tab_pages/feed.dart';
 import 'package:dasavatar_app/presentation/tab_pages/info.dart';
 import 'package:dasavatar_app/presentation/tab_pages/profile.dart';
 import 'package:dasavatar_app/utils/string_values.dart';
@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentPage;
+  int _currentPage = 0;
 
   _getBody() {
     switch (_currentPage) {
@@ -60,10 +60,7 @@ class _HomePageState extends State<HomePage> {
                 index: 2,
                 icontab: Icons.account_circle,
                 text: StringValues.PROFILE),
-              _getBottomBarItem(
-                index: 3,
-                icontab: Icons.info,
-                text: 'About'),
+            _getBottomBarItem(index: 3, icontab: Icons.info, text: 'About'),
           ],
         ),
       ),

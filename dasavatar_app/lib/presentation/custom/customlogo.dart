@@ -14,7 +14,6 @@ class CustomLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-//<<<<<<< HEAD
       width: ScreenUtil.instance.setWidth(115),
       height: ScreenUtil.instance.setWidth(115),
       decoration: BoxDecoration(

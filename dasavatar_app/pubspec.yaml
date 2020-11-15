@@ -47,6 +47,7 @@ dependencies:
   geocoding: ^1.0.5
   location_permissions: "2.0.5"
   firebase_core:
+  google_maps_flutter:
 
 dev_dependencies:
   flutter_test:
