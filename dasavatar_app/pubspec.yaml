@@ -44,6 +44,7 @@ dependencies:
   cached_network_image:
   fluttertoast:
   geolocator:
+  geocoding: ^1.0.5
   location_permissions:
   firebase_core:
 

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dasavatar_app/model/user.dart';
 import 'package:dasavatar_app/utils/global.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
 
 part 'user_store.g.dart';
@@ -70,6 +71,18 @@ abstract class _UserStore with Store {
       String url = await uploadFileFirebase.uploadFile(
           folderName: 'user_profile', fileName: user.uid, file: imageFile);
       user.imgUrl = url;
+    }
+    if (user.latitude == null) {
+      bool per = await locationPermission();
+      if (per) {
+        isLoading = true;
+        Position position = await locationService.getLatLong();
+        print("response in fetch address ");
+        if (position != null) {
+          user.latitude = position.latitude.toString();
+          user.longitude = position.longitude.toString();
+        }
+      }
     }
     await userService.updateUser(user: user);
     loggedInUser = user;

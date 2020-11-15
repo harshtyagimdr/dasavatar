@@ -33,9 +33,6 @@ abstract class _User with Store {
   String createdAt;
 
   @observable
-  String lastLoggedIn;
-
-  @observable
   String latitude;
 
   @observable
