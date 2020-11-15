@@ -15,7 +15,7 @@ class image(APIView):
         if serializer.is_valid():
             url = request.data['image']
             length = len(url)
-            p = url[length - 10:] + "jpg"
+            p = url[length - 10:] + ".jpg"
             print(url[-1:5])
             urllib.request.urlretrieve(url, p)
             print(p)
@@ -42,7 +42,7 @@ class crowd(APIView):
         if serializer.is_valid():
             url = request.data['image']
             length = len(url)
-            p = url[length - 10:] + "jpg"
+            p = url[length - 10:] + ".jpg"
             print(url[-1:5])
             urllib.request.urlretrieve(url, p)
             print(p)
