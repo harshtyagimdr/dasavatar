@@ -8,14 +8,16 @@ class PostService {
   static final PostService _instance = PostService._();
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<Map<String, Post>> getAllPost() async {
+  getAllPost(Function addPostInStore) async {
     try {
-      Map<String, Post> posts = Map<String, Post>();
-      QuerySnapshot querySnapshot = await _firestore.collection('posts').get();
-      querySnapshot.docs.forEach((element) {
-        posts.addAll({element.id: Post.fromJson(element.data())});
+      await _firestore.collection('posts').snapshots().listen((event) {
+        event.docs.forEach((element) {
+          addPostInStore(Post.fromJson(element.data()));
+        });
+        if (event.docs.isEmpty) {
+          addPostInStore(null);
+        }
       });
-      return posts;
     } catch (e) {
       print("get all post in post service");
       print(e);

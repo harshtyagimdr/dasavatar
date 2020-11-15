@@ -17,14 +17,12 @@ abstract class _PostStore with Store {
   ObservableMap<String, Post> posts;
 
   @action
-  gerAllPost() async {
+  getAllPost() async {
     if (posts == null) {
       posts = ObservableMap<String, Post>();
       isLoading = true;
       try {
-        Map<String, Post> reponse = await postService.getAllPost();
-        posts.addAll(reponse);
-        isLoading = false;
+        await postService.getAllPost(addPostInStore);
       } catch (e) {
         isLoading = false;
         print("in get All Post in post store");
@@ -32,6 +30,15 @@ abstract class _PostStore with Store {
         throw e;
       }
     }
+  }
+
+  @action
+  addPostInStore(Post post) {
+    if (posts == null) {
+      posts = ObservableMap<String, Post>();
+    }
+    if (post != null) posts.addAll({post.id: post});
+    isLoading = false;
   }
 
   @action

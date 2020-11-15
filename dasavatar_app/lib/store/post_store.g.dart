@@ -43,11 +43,11 @@ mixin _$PostStore on _PostStore, Store {
     }, _$postsAtom, name: '${_$postsAtom.name}_set');
   }
 
-  final _$gerAllPostAsyncAction = AsyncAction('gerAllPost');
+  final _$getAllPostAsyncAction = AsyncAction('getAllPost');
 
   @override
-  Future gerAllPost() {
-    return _$gerAllPostAsyncAction.run(() => super.gerAllPost());
+  Future getAllPost() {
+    return _$getAllPostAsyncAction.run(() => super.getAllPost());
   }
 
   final _$uploadPostAsyncAction = AsyncAction('uploadPost');
@@ -63,5 +63,17 @@ mixin _$PostStore on _PostStore, Store {
   @override
   Future clearStore() {
     return _$clearStoreAsyncAction.run(() => super.clearStore());
+  }
+
+  final _$_PostStoreActionController = ActionController(name: '_PostStore');
+
+  @override
+  dynamic addPostInStore(Post post) {
+    final _$actionInfo = _$_PostStoreActionController.startAction();
+    try {
+      return super.addPostInStore(post);
+    } finally {
+      _$_PostStoreActionController.endAction(_$actionInfo);
+    }
   }
 }

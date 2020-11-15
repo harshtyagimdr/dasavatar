@@ -45,7 +45,7 @@ dependencies:
   fluttertoast:
   geolocator:
   geocoding: ^1.0.5
-  location_permissions:
+  location_permissions: "2.0.5"
   firebase_core:
 
 dev_dependencies:

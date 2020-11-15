@@ -77,7 +77,7 @@ Future<bool> locationPermission() async {
   if (checkPermission != PermissionStatus.granted) {
     print("check location permission");
     PermissionStatus permission =
-        await LocationPermissions().requestPermissions();
+        await LocationPermissions().requestPermissions(permissionLevel: LocationPermissionLevel.locationWhenInUse);
     print(permission.toString());
     if (permission == PermissionStatus.granted)
       return true;

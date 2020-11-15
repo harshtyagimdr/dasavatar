@@ -35,7 +35,7 @@ class _ProfileState extends State<Profile> {
                         Navigator.pushNamedAndRemoveUntil(
                             context, SplashPage.routeNamed, (route) => false);
                       } catch (e) {
-                        print("error in send otp");
+                        print("error in logout");
                         print(e);
                         showSnackbar(e, context);
                       }
