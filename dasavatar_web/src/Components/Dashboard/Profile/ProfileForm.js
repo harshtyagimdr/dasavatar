@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 class ProfileForm extends Component {
 
     state = {
-        first_name: null,
-        last_name: null,
-        email: null,
+        name: null,
         phone: null,
         date: null,
         image: null,
@@ -28,19 +26,9 @@ class ProfileForm extends Component {
             <div className="row">
                 <form className="col s12" onSubmit={this.handleSubmit}>
                     <div className="row">
-                        <div className="input-field col s6">
-                            <input id="first_name" type="text" onChange={this.handleChange} className="validate"></input>
-                            <label htmlFor="first_name">First Name</label>
-                        </div>
-                        <div className="input-field col s6">
-                            <input id="last_name" type="text" onChange={this.handleChange} className="validate"></input>
-                            <label htmlFor="last_name">Last Name</label>
-                        </div>
-                    </div>
-                    <div className="row">
                         <div className="input-field col s12">
-                            <input id="email" type="email" onChange={this.handleChange} className="validate"></input>
-                            <label htmlFor="email">Email</label>
+                            <input id="name" type="text" onChange={this.handleChange} className="validate"></input>
+                            <label htmlFor="name">Name</label>
                         </div>
                     </div>
                     <div className="row">
@@ -55,7 +43,7 @@ class ProfileForm extends Component {
                     </div>
                     <div className='row'>
                         <div className=" col s12 file-field input-field">
-                            <div className="btn">
+                            <div style={{backgroundColor:"#226089"}} className="btn">
                                 <span><i className="material-icons">file_upload</i></span>
                                 <input id='image' onChange={this.handleChange} type="file"></input>
                             </div>
@@ -72,7 +60,7 @@ class ProfileForm extends Component {
                             </label>
                         </div>
                         <div className="col s12">
-                            <button className="btn right waves-effect waves-light">Update
+                            <button style={{backgroundColor:"#226089"}} className="btn right waves-effect waves-light">Update
                                 <i className="material-icons right">send</i>
                             </button>
                         </div>

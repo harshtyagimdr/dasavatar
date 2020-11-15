@@ -4,15 +4,6 @@ import { Link } from 'react-router-dom';
 const PostDetail = () => {
     return (
         <div className='container'>
-            <div style={{backgroundColor:"#6699cc"}} className='row'>
-                <Link to="/">
-                    <div className='col s1'>
-                        <i class="material-icons white-text right-align">arrow_back</i>
-                    </div>
-                </Link>
-                <div className='col s11'>
-                </div>
-            </div>
             <div className='row'>
                 <h4>On Time At Location</h4>
             </div>

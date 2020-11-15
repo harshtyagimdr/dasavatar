@@ -5,7 +5,7 @@ const Footer = () => {
         <footer style={{backgroundColor:"#226089"}} className="page-footer footer-copyright">
             <div className="center">
                 <h6 className="container">
-                    © 2020 Copyright DasAvtar
+                    © 2020 Copyright DasAvatar
                 </h6>
                     <br></br> 
             </div>
