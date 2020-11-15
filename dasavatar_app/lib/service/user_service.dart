@@ -9,6 +9,7 @@ class UserService {
   factory UserService.getInstance() => _instance;
   static final UserService _instance = UserService._();
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   Future<User> getUser({String id}) async {
     String uid = id ?? await preferenceService.getUID();
@@ -23,21 +24,19 @@ class UserService {
   Future<User> setUser({User user}) async {
     DocumentReference documentReference =
         _firestore.collection('user_details').doc(user.uid);
-    var data = User.toJson(user);
+    String token = await _firebaseMessaging.getToken();
     try {
       DocumentSnapshot documentSnapshot = await documentReference.get();
       if (documentSnapshot.exists) {
         print("User exist");
         User data = User.fromJson(documentSnapshot.data());
-        data.lastLoggedIn = user.lastLoggedIn;
-        data.deviceToken = user.deviceToken;
+        data.deviceToken = token;
         await documentReference.update(User.toJson(data));
         user = data;
       } else {
         user.createdAt = DateTime.now().toString();
-        user.lastLoggedIn = DateTime.now().toString();
-        user.deviceToken = await FirebaseMessaging().getToken();
-        await documentReference.set(data);
+        user.deviceToken = token;
+        await documentReference.set(User.toJson(user));
         print("User added");
       }
       return user;

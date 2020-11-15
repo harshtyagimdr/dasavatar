@@ -1,7 +1,10 @@
 import 'package:dasavatar_app/service/auth_service.dart';
+import 'package:dasavatar_app/service/location_service.dart';
+import 'package:dasavatar_app/service/post_service.dart';
 import 'package:dasavatar_app/service/prefernce_service.dart';
 import 'package:dasavatar_app/service/upload_file_firebase.dart';
 import 'package:dasavatar_app/service/user_service.dart';
+import 'package:dasavatar_app/service/verify_serivce.dart';
 import 'package:dasavatar_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,6 +13,9 @@ import 'package:location_permissions/location_permissions.dart';
 final PreferenceService preferenceService = PreferenceService.getInstance();
 final UserService userService = UserService.getInstance();
 final AuthService authService = AuthService.getInstance();
+final VerifyService verifyService = VerifyService.getInstance();
+final PostService postService = PostService.getInstance();
+final LocationService locationService = LocationService.getInstance();
 final UploadFileFirebase uploadFileFirebase = UploadFileFirebase.getInstance();
 
 String validateEmail(String email) {
@@ -71,7 +77,7 @@ Future<bool> locationPermission() async {
   if (checkPermission != PermissionStatus.granted) {
     print("check location permission");
     PermissionStatus permission =
-        await LocationPermissions().requestPermissions();
+        await LocationPermissions().requestPermissions(permissionLevel: LocationPermissionLevel.locationWhenInUse);
     print(permission.toString());
     if (permission == PermissionStatus.granted)
       return true;

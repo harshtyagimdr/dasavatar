@@ -142,7 +142,7 @@ class _UserAccessPageState extends State<UserAccessPage> {
                     await userStore.signUp(user: user, password: password);
                     _navigateToSplashPage();
                   } catch (e) {
-                    print("error in send otp");
+                    print("signup error");
                     print(e);
                     showSnackbar(e, context);
                   }
@@ -200,7 +200,7 @@ class _UserAccessPageState extends State<UserAccessPage> {
                         email: user.email, password: password);
                     _navigateToSplashPage();
                   } catch (e) {
-                    print("error in send otp");
+                    print("error in login");
                     print(e);
                     showSnackbar(e, context);
                   }

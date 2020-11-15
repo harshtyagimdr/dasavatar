@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dasavatar_app/model/user.dart';
 import 'package:dasavatar_app/utils/global.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
 
 part 'user_store.g.dart';
@@ -55,7 +56,23 @@ abstract class _UserStore with Store {
     try {
       isLoading = true;
       User user = await userService.getUser(id: uid);
-      await setLoggedIn(user);
+      if (user.latitude == null) {
+        bool per = await locationPermission();
+        if (per) {
+          isLoading = true;
+          Position position = await locationService.getLatLong();
+          print("response in fetch address ");
+          if (position != null) {
+            user.latitude = position.latitude.toString();
+            user.longitude = position.longitude.toString();
+          }
+          await updatedUser(user: user);
+        } else {
+          await setLoggedIn(user);
+        }
+      } else {
+        await setLoggedIn(user);
+      }
     } catch (e) {
       print("get user in user store");
       print(e);
@@ -71,14 +88,37 @@ abstract class _UserStore with Store {
           folderName: 'user_profile', fileName: user.uid, file: imageFile);
       user.imgUrl = url;
     }
+    if (user.latitude == null) {
+      bool per = await locationPermission();
+      if (per) {
+        isLoading = true;
+        Position position = await locationService.getLatLong();
+        print("response in fetch address ");
+        if (position != null) {
+          user.latitude = position.latitude.toString();
+          user.longitude = position.longitude.toString();
+        }
+      }
+    }
     await userService.updateUser(user: user);
-    loggedInUser = user;
-    isLoading = false;
+    setLoggedIn(user);
   }
 
   @action
   createUser(User user) async {
     isLoading = true;
+    if (user.latitude == null) {
+      bool per = await locationPermission();
+      if (per) {
+        isLoading = true;
+        Position position = await locationService.getLatLong();
+        print("response in fetch address ");
+        if (position != null) {
+          user.latitude = position.latitude.toString();
+          user.longitude = position.longitude.toString();
+        }
+      }
+    }
     user = await userService.setUser(user: user);
     await setLoggedIn(user);
   }

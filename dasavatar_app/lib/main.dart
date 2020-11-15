@@ -1,6 +1,7 @@
 import 'package:dasavatar_app/presentation/home_page.dart';
 import 'package:dasavatar_app/presentation/splash_page.dart';
 import 'package:dasavatar_app/presentation/user_access_page.dart';
+import 'package:dasavatar_app/store/post_store.dart';
 import 'package:dasavatar_app/store/user_store.dart';
 import 'package:dasavatar_app/utils/string_values.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,6 +25,7 @@ class Dasavatar extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<UserStore>.value(value: UserStore()),
+        Provider<PostStore>.value(value: PostStore()),
       ],
       child: MaterialApp(
           title: StringValues.APP_NAME,

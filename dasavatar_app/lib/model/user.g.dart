@@ -15,7 +15,6 @@ User _$UserFromJson(Map<String, dynamic> json) {
     ..imgUrl = json['imgUrl'] as String
     ..email = json['email'] as String
     ..createdAt = json['createdAt'] as String
-    ..lastLoggedIn = json['lastLoggedIn'] as String
     ..latitude = json['latitude'] as String
     ..longitude = json['longitude'] as String
     ..deviceToken = json['deviceToken'] as String;
@@ -29,7 +28,6 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'imgUrl': instance.imgUrl,
       'email': instance.email,
       'createdAt': instance.createdAt,
-      'lastLoggedIn': instance.lastLoggedIn,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'deviceToken': instance.deviceToken,
@@ -159,23 +157,6 @@ mixin _$User on _User, Store {
       super.createdAt = value;
       _$createdAtAtom.reportChanged();
     }, _$createdAtAtom, name: '${_$createdAtAtom.name}_set');
-  }
-
-  final _$lastLoggedInAtom = Atom(name: '_User.lastLoggedIn');
-
-  @override
-  String get lastLoggedIn {
-    _$lastLoggedInAtom.context.enforceReadPolicy(_$lastLoggedInAtom);
-    _$lastLoggedInAtom.reportObserved();
-    return super.lastLoggedIn;
-  }
-
-  @override
-  set lastLoggedIn(String value) {
-    _$lastLoggedInAtom.context.conditionallyRunInAction(() {
-      super.lastLoggedIn = value;
-      _$lastLoggedInAtom.reportChanged();
-    }, _$lastLoggedInAtom, name: '${_$lastLoggedInAtom.name}_set');
   }
 
   final _$latitudeAtom = Atom(name: '_User.latitude');
