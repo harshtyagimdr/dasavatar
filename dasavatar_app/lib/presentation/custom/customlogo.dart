@@ -1,3 +1,4 @@
+import 'package:dasavatar_app/presentation/splash_page.dart';
 import 'package:dasavatar_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,8 @@ class CustomLogo extends StatelessWidget {
   CustomLogo({
     this.url,
   });
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +25,7 @@ class CustomLogo extends StatelessWidget {
                 offset: Offset(2, 4))
           ],
           color: Colors.white,
-          image: DecorationImage(
-              image: NetworkImage(
-                 url
-                  ),
-              fit: BoxFit.fill)),
+          image: DecorationImage(image: NetworkImage(url), fit: BoxFit.fill)),
     );
   }
 }
