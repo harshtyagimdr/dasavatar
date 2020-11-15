@@ -1,9 +1,18 @@
 import React from 'react';
+import Post from './Post';
  
 const Dashboard=()=>{
     return(
         <div>
-            Hello dashboard
+            <div className='container'>
+                <h3 className='header'>Recent Posts</h3>
+                <div className='row'>
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                </div>
+            </div>
         </div>
     )
 }
