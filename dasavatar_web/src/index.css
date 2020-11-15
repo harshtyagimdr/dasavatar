@@ -26,6 +26,10 @@ code {
 }
 
 .card-upper-text {
+  margin-top: 9px;
+}
+
+.card-upper-image {
   margin-top: -5px;
 }
 

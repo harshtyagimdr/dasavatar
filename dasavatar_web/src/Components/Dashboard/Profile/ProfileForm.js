@@ -48,7 +48,7 @@ class ProfileForm extends Component {
                                 <input id='image' onChange={this.handleChange} type="file"></input>
                             </div>
                             <div className="file-path-wrapper">
-                                <input id='image' placeholder='Upload Image' onChange={this.handleChange} className="file-path validate" type="text"></input>
+                                <input id='image' placeholder='Update Image' onChange={this.handleChange} className="file-path validate" type="text"></input>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@ class ProfileForm extends Component {
                         <div className="input-field col s12">
                             <label>
                                 <input id='location' onChange={this.handleChange} type="checkbox"></input>
-                                <span>Share Location</span>
+                                <span>Update Location</span>
                             </label>
                         </div>
                         <div className="col s12">

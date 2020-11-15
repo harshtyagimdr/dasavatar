@@ -8,14 +8,13 @@ const Post = () => {
             <Link to='/post'>
                 <div className="card hoverable black-text">
                     <div className='row center-align valign-wrapper'>
-                        <div className='col s3'></div>
-                        <div className='col s2 card-upper-text'>
+                        <div className='col s1'></div>
+                        <div className='col s2 card-upper-image'>
                         <br></br>
                             <ProfileImage height="30" width="30" className="circle responsive-img" />
                         </div>
-                        <div className='col s6 card-upper-text'>
-                            <br></br>
-                            <span className='valign-wrappe left'>"Username"</span>
+                        <div className='col s8 valign-wrapper card-upper-text'>
+                            <span className=''>"Username"</span>
                         </div>
                         <div className='col s1'></div>
                     </div>
