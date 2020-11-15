@@ -35,15 +35,7 @@ class _UserAccessPageState extends State<UserAccessPage> {
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(
-                height: ScreenUtil.instance.setHeight(32),
-              ),
-
-                  Center(
-                          child: CustomLogo(
-                            url: 'assets/logo.jpeg',
-                            profile: true,
-                          )),
+             
 
               Expanded(
                  
@@ -82,6 +74,15 @@ class _UserAccessPageState extends State<UserAccessPage> {
         key: _signUPForm,
         child: Column(
           children: <Widget>[
+             SizedBox(
+                height: ScreenUtil.instance.setHeight(32),
+              ),
+
+                  Center(
+                          child: CustomLogo(
+                            url: 'assets/logo.jpeg',
+                            profile: true,
+                          )),
             SizedBox(
               height: ScreenUtil.instance.setHeight(50),
             ),
@@ -180,6 +181,15 @@ class _UserAccessPageState extends State<UserAccessPage> {
         key: _signINFrom,
         child: Column(
           children: <Widget>[
+             SizedBox(
+                height: ScreenUtil.instance.setHeight(32),
+              ),
+
+                  Center(
+                          child: CustomLogo(
+                            url: 'assets/logo.jpeg',
+                            profile: true,
+                          )),
             SizedBox(
               height: ScreenUtil.instance.setHeight(100),
             ),

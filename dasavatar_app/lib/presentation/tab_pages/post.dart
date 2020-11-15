@@ -20,7 +20,6 @@ class _PostState extends State<Post> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            color: Styles.WHITE_COLOR,
             child: Padding(
               padding: const EdgeInsets.all(32),
               child: Column(
