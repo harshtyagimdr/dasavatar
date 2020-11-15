@@ -1,3 +1,4 @@
+import 'package:dasavatar_app/presentation/custom/custom_button.dart';
 import 'package:dasavatar_app/presentation/custom/custom_image_box.dart';
 import 'package:dasavatar_app/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,15 +26,25 @@ class _PostState extends State<Post> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+        
+                 SizedBox(
+                    height: ScreenUtil.instance.setHeight(32),
+                  ),
+
                   CustomImageContainer(),
                   SizedBox(
                     height: ScreenUtil.instance.setHeight(32),
                   ),
-                  
-
-
+                   SizedBox(
+          height: ScreenUtil.instance.setHeight(16),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Category:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
                   Card(
-                    elevation: 5,
+                    elevation: 3,
                                       child: Padding(
                                         padding: const EdgeInsets.only(left: 5),
                                         child: Container(
@@ -56,8 +67,10 @@ class _PostState extends State<Post> {
                               ),
                               DropdownMenuItem(
                                   child: Text("Animal Injured"), value: "Animal Injured"),
-                              DropdownMenuItem(
-                                  child: Text("Car Accident"), value: "Car Accident")
+                                DropdownMenuItem(
+                                  child: Text("Others"), value: "Others")
+                  
+
                             ],
                             onChanged: (value) {
                               setState(() {
@@ -66,7 +79,50 @@ class _PostState extends State<Post> {
                             })),
                                       ),
                   )
-                          // ),
+          ],
+        ),
+          SizedBox(
+                    height: ScreenUtil.instance.setHeight(16),
+                  ),
+
+         Text('Description:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
+
+  SizedBox(
+                    height: ScreenUtil.instance.setHeight(16),
+                  ),
+      
+           TextField(
+               minLines: 3,
+             keyboardType: TextInputType.multiline,
+              maxLines: null,
+            decoration:  InputDecoration(
+              enabledBorder:  OutlineInputBorder(
+                  
+                   borderRadius: BorderRadius.circular(5.0),
+                    borderSide:  BorderSide(color: Styles.PRIMARY_COLOR , width: 2)),
+  
+                focusedBorder:  OutlineInputBorder(
+                  
+                   borderRadius: BorderRadius.circular(5.0),
+                    borderSide:  BorderSide(color: Styles.PRIMARY_COLOR , width: 2)),
+                hintText: 'Description',
+               ),
+          ),
+
+            SizedBox(
+                    height: ScreenUtil.instance.setHeight(32),
+                  ),
+
+          CustomButton(
+            text: 'Post',
+          )
+        
+            
+
+
+                
+                        
                 ],
               ),
             ),

@@ -15,7 +15,8 @@ CustomImageContainer({
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: ScreenUtil.instance.setHeight(360),
+        height: ScreenUtil.instance.setHeight(300),
+        width: ScreenUtil.instance.setWidth(360),
         child: Center(
             child: Container(
               decoration: BoxDecoration(
@@ -34,14 +35,6 @@ CustomImageContainer({
                 ),
               ),
             )),
-
-
-            
-
-
-
-
-
 
       ),
     );
