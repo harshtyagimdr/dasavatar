@@ -22,6 +22,9 @@ abstract class _UserStore with Store {
   @observable
   User loggedInUser;
 
+  @observable
+  ObservableMap<String, User> userList = ObservableMap<String, User>();
+
   @action
   login({String email, String password}) async {
     isLoading = true;
@@ -78,6 +81,19 @@ abstract class _UserStore with Store {
       }
     } catch (e) {
       print("get user in user store");
+      print(e);
+      throw e;
+    }
+  }
+
+  @action
+  getUserById({String uid}) async {
+    if (userList.containsKey(uid)) return;
+    try {
+      User user = await userService.getUser(id: uid);
+      if (user != null) userList.addAll({uid: user});
+    } catch (e) {
+      print("get user by list in user store");
       print(e);
       throw e;
     }

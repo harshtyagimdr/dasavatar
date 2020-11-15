@@ -77,6 +77,23 @@ mixin _$UserStore on _UserStore, Store {
     }, _$loggedInUserAtom, name: '${_$loggedInUserAtom.name}_set');
   }
 
+  final _$userListAtom = Atom(name: '_UserStore.userList');
+
+  @override
+  ObservableMap<String, User> get userList {
+    _$userListAtom.context.enforceReadPolicy(_$userListAtom);
+    _$userListAtom.reportObserved();
+    return super.userList;
+  }
+
+  @override
+  set userList(ObservableMap<String, User> value) {
+    _$userListAtom.context.conditionallyRunInAction(() {
+      super.userList = value;
+      _$userListAtom.reportChanged();
+    }, _$userListAtom, name: '${_$userListAtom.name}_set');
+  }
+
   final _$loginAsyncAction = AsyncAction('login');
 
   @override
@@ -98,6 +115,13 @@ mixin _$UserStore on _UserStore, Store {
   @override
   Future getUser({String uid}) {
     return _$getUserAsyncAction.run(() => super.getUser(uid: uid));
+  }
+
+  final _$getUserByIdAsyncAction = AsyncAction('getUserById');
+
+  @override
+  Future getUserById({String uid}) {
+    return _$getUserByIdAsyncAction.run(() => super.getUserById(uid: uid));
   }
 
   final _$uploadingImageAsyncAction = AsyncAction('uploadingImage');

@@ -1,8 +1,8 @@
+import 'package:dasavatar_app/presentation/custom/customlogo.dart';
 import 'package:dasavatar_app/presentation/home_page.dart';
 import 'package:dasavatar_app/presentation/user_access_page.dart';
 import 'package:dasavatar_app/store/user_store.dart';
 import 'package:dasavatar_app/utils/global.dart';
-import 'package:dasavatar_app/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -35,8 +35,8 @@ class _SplashPageState extends State<SplashPage> {
       ..init(context);
     return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Styles.PRIMARY_COLOR),
+        child: CustomLogo(
+          url: 'assets/logo.jpeg',
         ),
       ),
     );

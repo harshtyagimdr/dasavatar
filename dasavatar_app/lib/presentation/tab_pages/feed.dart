@@ -17,31 +17,35 @@ class _FeedState extends State<Feed> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Styles.WHITE_COLOR,
         body: Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: ScreenUtil.instance.setWidth(20),
-            ),
-            color: Styles.WHITE_COLOR,
-            child: StoreObserver<PostStore>(
-                builder: (PostStore postStore, BuildContext context) {
-              if (postStore.posts == null) postStore.getAllPost();
-              if (postStore.isLoading)
-                return Center(
-                  child: CircularProgressIndicator(
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(Styles.PRIMARY_COLOR),
-                  ),
-                );
-              if (postStore.posts == null || postStore.posts.isEmpty)
-                return Center(
-                  child: Text("No Post Yet"),
-                );
-              return ListView.builder(
-                  itemCount: postStore.posts.length,
-                  itemBuilder: (context, index) {
-                    return CustomFeedCard();
-                  });
-            })),
+          margin: EdgeInsets.symmetric(
+            horizontal: ScreenUtil.instance.setWidth(20),
+          ),
+          color: Styles.WHITE_COLOR,
+          child: StoreObserver<PostStore>(
+              builder: (PostStore postStore, BuildContext context) {
+            if (postStore.posts == null) postStore.getAllPost();
+            if (postStore.isLoading)
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor:
+                      AlwaysStoppedAnimation<Color>(Styles.PRIMARY_COLOR),
+                ),
+              );
+            if (postStore.posts == null || postStore.posts.isEmpty)
+              return Center(
+                child: Text("No Post Yet"),
+              );
+            return ListView.builder(
+                itemCount: postStore.posts.length,
+                itemBuilder: (context, index) {
+                  return CustomFeedCard(
+                    post: postStore.posts.values.toList()[index],
+                  );
+                });
+          }),
+        ),
       ),
     );
   }
