@@ -1,4 +1,4 @@
-package com.example.dasavatar_app
+package com.dasavatar.app
 
 import io.flutter.embedding.android.FlutterActivity
 
