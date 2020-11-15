@@ -21,6 +21,17 @@ class SignUp extends Component {
     // console.log(this.state);
     this.props.signUp(this.state);
   }
+  componentDidMount() {
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(function(position) {
+        const location={
+            longitude:position?.coords?.longitude,
+            latitude:position?.coords?.latitude,
+        }
+        window.localStorage.setItem('location', JSON.stringify(location)); 
+      });
+    }
+  }
   render() {
     const {auth,authError}=this.props
     if (auth.uid)return <Redirect to="/"></Redirect>

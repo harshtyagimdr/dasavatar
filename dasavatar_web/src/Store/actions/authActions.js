@@ -28,16 +28,22 @@ export const signIn = (credentials) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
       const firebase = getFirebase();
       const firestore = getFirestore();
-  
+      const location= JSON.parse(window.localStorage.getItem('location'));
       firebase.auth().createUserWithEmailAndPassword(
         newUser.email, 
         newUser.password,
       ).then(resp => {
-        return firestore.collection('users').doc(resp.user.uid).set({
-          firstName: newUser.firstName,
-          lastName: newUser.lastName,
-          initials: newUser.firstName[0] + newUser.lastName[0],
+        return firestore.collection('user_details').doc(resp.user.uid).set({
+          name: `${newUser.firstName} ${newUser.lastName}` ,
           email:newUser.email,
+          createdAt:new Date(),
+          deviceToken:"",
+          dob:'',
+          imgUrl:'',
+          phoneNumber:'',
+          uid:resp.user.uid,
+          longitude:location.longitude,
+          latitude:location.latitude
         });
       }).then(() => {
         dispatch({ type: 'SIGNUP_SUCCESS' });
