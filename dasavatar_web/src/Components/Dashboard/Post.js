@@ -8,7 +8,7 @@ const Post = () => {
             <Link to='/post'>
                 <div className="card hoverable black-text">
                     <div className='row center-align valign-wrapper'>
-                        <div className='col s2'></div>
+                        <div className='col s3'></div>
                         <div className='col s2 card-upper-text'>
                         <br></br>
                             <ProfileImage height="30" width="30" className="circle responsive-img" />
@@ -17,7 +17,7 @@ const Post = () => {
                             <br></br>
                             <span className='valign-wrappe left'>"Username"</span>
                         </div>
-                        <div className='col s2'></div>
+                        <div className='col s1'></div>
                     </div>
                     <div className="row">
                         <div className='col s1'></div>
