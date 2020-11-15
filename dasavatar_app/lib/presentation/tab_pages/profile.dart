@@ -1,5 +1,6 @@
 import 'package:dasavatar_app/model/store_observer.dart';
 import 'package:dasavatar_app/presentation/custom/custom_button.dart';
+import 'package:dasavatar_app/presentation/custom/customlogo.dart';
 import 'package:dasavatar_app/presentation/custom/customprofiletextcard.dart';
 import 'package:dasavatar_app/presentation/custom/customtextfield.dart';
 import 'package:dasavatar_app/presentation/splash_page.dart';
@@ -40,23 +41,9 @@ class _ProfileState extends State<Profile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
-                        child: Container(
-                          height: ScreenUtil.instance.setHeight(130),
-                          width: ScreenUtil.instance.setWidth(120),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(24),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Styles.BLUE_GREY_COLOR,
-                                    blurRadius: 10,
-                                    offset: Offset(2, 4))
-                              ],
-                              color: Colors.white,
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://i.pinimg.com/originals/24/37/bd/2437bd9758a684862c11aa9e8f20341a.jpg'),
-                                  fit: BoxFit.fill)),
-                        ),
+                        child: CustomLogo(
+                          url: 'https://i.pinimg.com/originals/24/37/bd/2437bd9758a684862c11aa9e8f20341a.jpg'
+                        )
                       ),
                       SizedBox(
                         height: ScreenUtil.instance.setHeight(32),
