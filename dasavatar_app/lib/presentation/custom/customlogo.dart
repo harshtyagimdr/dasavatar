@@ -6,7 +6,7 @@ class CustomLogo extends StatelessWidget {
   final bool profile;
   CustomLogo({
     this.url,
-    this.profile = false
+    this.profile = false,
   });
 
   @override

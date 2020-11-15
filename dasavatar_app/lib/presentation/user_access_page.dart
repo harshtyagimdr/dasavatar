@@ -78,7 +78,7 @@ class _UserAccessPageState extends State<UserAccessPage> {
                 height: ScreenUtil.instance.setHeight(32),
               ),
 
-                  Center(
+               Center(
                           child: CustomLogo(
                             url: 'assets/logo.jpeg',
                             profile: true,
