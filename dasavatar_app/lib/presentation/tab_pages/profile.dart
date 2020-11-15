@@ -30,10 +30,9 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-//<<<<<<< HEAD
         body: SingleChildScrollView(
           child: Container(
-            color: Styles.WHITE_COLOR,
+          
             child: Padding(
               padding: const EdgeInsets.all(32),
               child: StoreObserver<UserStore>(

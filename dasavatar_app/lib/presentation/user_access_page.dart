@@ -1,6 +1,7 @@
 import 'package:dasavatar_app/model/store_observer.dart';
 import 'package:dasavatar_app/model/user.dart';
 import 'package:dasavatar_app/presentation/custom/custom_button.dart';
+import 'package:dasavatar_app/presentation/custom/customlogo.dart';
 import 'package:dasavatar_app/presentation/custom/customtextfield.dart';
 import 'package:dasavatar_app/presentation/splash_page.dart';
 import 'package:dasavatar_app/store/user_store.dart';
@@ -27,35 +28,48 @@ class _UserAccessPageState extends State<UserAccessPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StoreObserver<UserStore>(
-          builder: (UserStore userStore, BuildContext context) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: isSignUp
-                    ? _signUpWidget(userStore)
-                    : _signInWidget(userStore),
+    return SafeArea(
+          child: Scaffold(
+        body: StoreObserver<UserStore>(
+            builder: (UserStore userStore, BuildContext context) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                height: ScreenUtil.instance.setHeight(32),
               ),
-            ),
-            CustomButton(
-              onTap: () {
-                setState(() {
-                  isSignUp = !isSignUp;
-                });
-              },
-              text: isSignUp
-                  ? 'Already Have an account!\nSign In'
-                  : 'Don\'t Have an account!\nSign Up',
-              textColor: Styles.BLACK_COLOR,
-              buttonColor: Styles.TRANSPARENT_COLOR,
-              fontSize: 14,
-            ),
-          ],
-        );
-      }),
+
+                  Center(
+                          child: CustomLogo(
+                            url: 'assets/logo.jpeg',
+                            profile: true,
+                          )),
+
+              Expanded(
+                 
+                child: SingleChildScrollView(
+                  child: isSignUp
+                      ? _signUpWidget(userStore)
+                      : _signInWidget(userStore),
+                ),
+              ),
+              CustomButton(
+                onTap: () {
+                  setState(() {
+                    isSignUp = !isSignUp;
+                  });
+                },
+                text: isSignUp
+                    ? 'Already Have an account!\nSign In'
+                    : 'Don\'t Have an account!\nSign Up',
+                textColor: Styles.BLACK_COLOR,
+                buttonColor: Styles.TRANSPARENT_COLOR,
+                fontSize: 14,
+              ),
+            ],
+          );
+        }),
+      ),
     );
   }
 
@@ -69,13 +83,13 @@ class _UserAccessPageState extends State<UserAccessPage> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: ScreenUtil.instance.setHeight(100),
+              height: ScreenUtil.instance.setHeight(50),
             ),
             Container(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Sign UP',
-                style: TextStyle(color: Styles.BLUE_GREY_COLOR, fontSize: 16),
+                'Sign Up',
+                style: TextStyle(color: Styles.BLUE_GREY_COLOR, fontSize: 18 ,fontWeight: FontWeight.w500),
                 textAlign: TextAlign.left,
               ),
             ),
@@ -131,6 +145,7 @@ class _UserAccessPageState extends State<UserAccessPage> {
               onSaved: (value) {
                 password = value;
               },
+               obstruct: false
             ),
             CustomButton(
               text: 'Sign Up',
@@ -171,8 +186,8 @@ class _UserAccessPageState extends State<UserAccessPage> {
             Container(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Sign IN',
-                style: TextStyle(color: Styles.BLUE_GREY_COLOR, fontSize: 16),
+                'Sign In',
+                style: TextStyle(color: Styles.BLUE_GREY_COLOR, fontSize: 18 ,fontWeight: FontWeight.w500),
                 textAlign: TextAlign.left,
               ),
             ),
@@ -188,6 +203,8 @@ class _UserAccessPageState extends State<UserAccessPage> {
               onSaved: (value) {
                 password = value;
               },
+              obstruct: false,
+              
             ),
             CustomButton(
               text: 'Submit',
