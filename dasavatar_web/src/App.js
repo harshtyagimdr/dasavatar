@@ -14,16 +14,18 @@ class App extends Component {
    return(
      <BrowserRouter>
      <div>
-        <Navbar />
+       
         <Switch>
+        <Route path='/signin' component={SignIn} />
+          <Route path='/signup' component={SignUp} />
+        <Navbar />
             <Route exact path='/'component={Dashboard} />
             <Route path='/profile'component={Profile} />
             <Route path='/post'component={PostDetail} />
-
-            <Route path='/signin' component={SignIn} />
-            <Route path='/signup' component={SignUp} />
+            <Footer />
+           
           </Switch>
-        <Footer />
+       
      </div>
      </BrowserRouter>
    )
