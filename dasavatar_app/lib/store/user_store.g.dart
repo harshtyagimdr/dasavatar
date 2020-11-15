@@ -26,6 +26,23 @@ mixin _$UserStore on _UserStore, Store {
     }, _$isLoadingAtom, name: '${_$isLoadingAtom.name}_set');
   }
 
+  final _$isUploadingAtom = Atom(name: '_UserStore.isUploading');
+
+  @override
+  bool get isUploading {
+    _$isUploadingAtom.context.enforceReadPolicy(_$isUploadingAtom);
+    _$isUploadingAtom.reportObserved();
+    return super.isUploading;
+  }
+
+  @override
+  set isUploading(bool value) {
+    _$isUploadingAtom.context.conditionallyRunInAction(() {
+      super.isUploading = value;
+      _$isUploadingAtom.reportChanged();
+    }, _$isUploadingAtom, name: '${_$isUploadingAtom.name}_set');
+  }
+
   final _$isLoggedInAtom = Atom(name: '_UserStore.isLoggedIn');
 
   @override
@@ -83,12 +100,19 @@ mixin _$UserStore on _UserStore, Store {
     return _$getUserAsyncAction.run(() => super.getUser(uid: uid));
   }
 
+  final _$uploadingImageAsyncAction = AsyncAction('uploadingImage');
+
+  @override
+  Future uploadingImage({File imageFile, String id}) {
+    return _$uploadingImageAsyncAction
+        .run(() => super.uploadingImage(imageFile: imageFile, id: id));
+  }
+
   final _$updatedUserAsyncAction = AsyncAction('updatedUser');
 
   @override
-  Future updatedUser({User user, File imageFile}) {
-    return _$updatedUserAsyncAction
-        .run(() => super.updatedUser(user: user, imageFile: imageFile));
+  Future updatedUser({User user}) {
+    return _$updatedUserAsyncAction.run(() => super.updatedUser(user: user));
   }
 
   final _$createUserAsyncAction = AsyncAction('createUser');

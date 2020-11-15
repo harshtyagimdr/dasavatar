@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dasavatar_app/model/store_observer.dart';
+import 'package:dasavatar_app/model/user.dart';
 import 'package:dasavatar_app/presentation/custom/custom_button.dart';
 import 'package:dasavatar_app/presentation/custom/customlogo.dart';
 import 'package:dasavatar_app/presentation/custom/customprofiletextcard.dart';
@@ -11,7 +14,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -20,61 +25,110 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   bool edit = false;
-  String name;
-  String dob;
-  String phoneNumber;
-  String email;
-  String password;
+  User user;
 
   @override
   Widget build(BuildContext context) {
+    if (user == null) {
+      user = Provider.of<UserStore>(context, listen: false).loggedInUser;
+    }
     return SafeArea(
       child: Scaffold(
-//<<<<<<< HEAD
+        backgroundColor: Styles.WHITE_COLOR,
         body: SingleChildScrollView(
-          child: Container(
-            color: Styles.WHITE_COLOR,
-            child: Padding(
-              padding: const EdgeInsets.all(32),
-              child: StoreObserver<UserStore>(
-                builder: (UserStore userStore, BuildContext context) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          padding: const EdgeInsets.all(32),
+          child: StoreObserver<UserStore>(
+            builder: (UserStore userStore, BuildContext context) {
+              return Column(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    width: ScreenUtil.instance.setWidth(120),
+                    height: ScreenUtil.instance.setWidth(120),
+                    child: Stack(
+                      children: [
+                        CustomLogo(url: user.imgUrl),
+                        edit
+                            ? Align(
+                                alignment: Alignment.bottomRight,
+                                child: InkWell(
+                                  onTap: () async {
+                                    try {
+                                      File file = await ImagePicker.pickImage(
+                                          source: ImageSource.camera);
+                                      print(file);
+                                      if (file != null) {
+                                        String url =
+                                            await userStore.uploadingImage(
+                                                imageFile: file, id: user.uid);
+                                        if (url == null) {
+                                          showToast(msg: "Image Not Verified");
+                                        } else {
+                                          showToast(msg: "Image Verified");
+                                          setState(() {
+                                            user.imgUrl = url;
+                                          });
+                                        }
+                                      }
+                                    } catch (e) {
+                                      print(e);
+                                      showSnackbar(e.toString(), context);
+                                    }
+                                  },
+                                  child: Container(
+                                    height: ScreenUtil.instance.setWidth(30),
+                                    width: ScreenUtil.instance.setWidth(30),
+                                    decoration: BoxDecoration(
+                                        color: Styles.PRIMARY_COLOR,
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: Styles.WHITE_COLOR,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : SizedBox(),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: ScreenUtil.instance.setHeight(32),
+                  ),
+                  Container(child: !edit ? _showForm(userStore) : _editForm()),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Center(
-                        child: CustomLogo(
-                          url: 'https://i.pinimg.com/originals/24/37/bd/2437bd9758a684862c11aa9e8f20341a.jpg'
-                        )
+                      FloatingActionButton(
+                        onPressed: () async {
+                          if (userStore.isUploading) {
+                            showToast(msg: 'Profile Pic is Uploading');
+                            return;
+                          }
+                          if (edit) {
+                            await userStore.updatedUser(user: user);
+                          }
+                          setState(() {
+                            edit = !edit;
+                          });
+                        },
+                        backgroundColor: Styles.PRIMARY_COLOR,
+                        child: userStore.isLoading
+                            ? CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Styles.WHITE_COLOR),
+                              )
+                            : !edit
+                                ? Icon(Icons.edit)
+                                : Icon(Icons.check),
                       ),
-                      SizedBox(
-                        height: ScreenUtil.instance.setHeight(32),
-                      ),
-                      Container(
-                          child: (edit == false) ? _showForm() : _editForm()),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-
-
-                          FloatingActionButton(
-                            onPressed: () {
-                              setState(() {
-                                if (edit == false)
-                                  edit = true;
-                                else
-                                  edit = false;
-                              });
-                            },
-                            backgroundColor: Styles.PRIMARY_COLOR,
-                            child: (edit == false)?Icon(Icons.edit):Icon(Icons.check),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: ScreenUtil.instance.setHeight(64),
-                      ),
-                      Container(child: (edit == false)?
-                                               Container(
+                    ],
+                  ),
+                  SizedBox(
+                    height: ScreenUtil.instance.setHeight(64),
+                  ),
+                  !edit
+                      ? Container(
                           height: ScreenUtil.instance.setHeight(70),
                           child: CustomButton(
                             text: 'Logout',
@@ -91,13 +145,11 @@ class _ProfileState extends State<Profile> {
                               }
                             },
                           ),
-                        ):Container(),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
+                        )
+                      : SizedBox(),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -106,61 +158,64 @@ class _ProfileState extends State<Profile> {
 
   _editForm() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         SizedBox(
+        SizedBox(
           height: ScreenUtil.instance.setHeight(48),
         ),
+        Text('Name',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         CustomTextField(
           hintText: 'Name',
-          onSaved: (value) {
-            name = value;
+          initialValue: user.name,
+          onChanged: (value) {
+            user.name = value;
           },
         ),
+        Text('Date Of Birth',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         InkWell(
           onTap: () {
             showDatePicker(
                     context: context,
-                    initialDate:
-                        dob != null ? DateTime.parse(dob) : DateTime.now(),
+                    initialDate: user.dob != null
+                        ? DateTime.parse(user.dob)
+                        : DateTime.now(),
                     firstDate: DateTime(1900, 1, 1),
                     lastDate: DateTime.now())
                 .then((value) {
               if (value != null) {
                 setState(() {
-                  dob = DateFormat('yyyy-MM-dd').format(value);
+                  user.dob = DateFormat('yyyy-MM-dd').format(value);
                 });
               }
             });
           },
           child: IgnorePointer(
             child: CustomTextField(
-              hintText: dob ?? 'Date Of Birth',
+              hintText: user.dob ?? 'Date Of Birth',
               validator: (value) {
                 return null;
               },
             ),
           ),
         ),
+        Text('Phone Number',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         CustomTextField(
           hintText: 'Phone Number',
           validator: validatePhone,
-          onSaved: (value) {
-            phoneNumber = value;
+          initialValue: user.phoneNumber,
+          onChanged: (value) {
+            user.phoneNumber = value;
           },
           textInputType: TextInputType.phone,
-        ),
-        CustomTextField(
-          hintText: 'Email',
-          validator: validateEmail,
-          onSaved: (value) {
-            email = value;
-          },
         ),
       ],
     );
   }
 
-  _showForm() {
+  _showForm(UserStore userStore) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -170,37 +225,29 @@ class _ProfileState extends State<Profile> {
         Text('Name',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         CustomProfileTextCard(
-          labelText: 'KHX',
+          labelText: userStore.loggedInUser.name ?? '',
           sizelabelText: 20,
-          postIcon: Icons.edit,
-          visiblepostIcon: false,
           labelTextWeight: FontWeight.w300,
         ),
         Text('Phone Number',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         CustomProfileTextCard(
-          labelText: 'dsfgf',
+          labelText: userStore.loggedInUser.phoneNumber ?? '',
           sizelabelText: 20,
-          postIcon: Icons.edit,
-          visiblepostIcon: false,
           labelTextWeight: FontWeight.w300,
         ),
         Text('Email',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         CustomProfileTextCard(
-          labelText: 'dsfgf',
+          labelText: userStore.loggedInUser.email ?? '',
           sizelabelText: 20,
-          postIcon: Icons.edit,
-          visiblepostIcon: false,
           labelTextWeight: FontWeight.w300,
         ),
-        Text('Date of birth',
+        Text('Date Of Birth',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         CustomProfileTextCard(
-          labelText: 'dsfgf',
+          labelText: userStore.loggedInUser.dob ?? '',
           sizelabelText: 20,
-          postIcon: Icons.edit,
-          visiblepostIcon: false,
           labelTextWeight: FontWeight.w300,
         ),
       ],

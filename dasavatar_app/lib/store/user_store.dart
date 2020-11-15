@@ -14,6 +14,9 @@ abstract class _UserStore with Store {
   bool isLoading = false;
 
   @observable
+  bool isUploading = false;
+
+  @observable
   bool isLoggedIn = false;
 
   @observable
@@ -81,13 +84,29 @@ abstract class _UserStore with Store {
   }
 
   @action
-  updatedUser({User user, File imageFile}) async {
-    isLoading = true;
-    if (imageFile != null) {
-      String url = await uploadFileFirebase.uploadFile(
-          folderName: 'user_profile', fileName: user.uid, file: imageFile);
-      user.imgUrl = url;
+  uploadingImage({File imageFile, String id}) async {
+    try {
+      if (imageFile != null) {
+        isUploading = true;
+        String url = await uploadFileFirebase.uploadFile(
+            file: imageFile, folderName: 'user_profile', fileName: id);
+        Map<String, dynamic> response =
+            await verifyService.verifyCrowd(url: url);
+        isUploading = false;
+        if (response['data']['status']) return url;
+      }
+      isUploading = false;
+      return null;
+    } catch (e) {
+      isUploading = false;
+      print(e);
+      throw e;
     }
+  }
+
+  @action
+  updatedUser({User user}) async {
+    isLoading = true;
     if (user.latitude == null) {
       bool per = await locationPermission();
       if (per) {
@@ -134,11 +153,10 @@ abstract class _UserStore with Store {
 
   @action
   logout() async {
-    isLoading = true;
+    await preferenceService.removeUID();
     authService.logout();
     isLoggedIn = false;
-    loggedInUser = null;
-    await preferenceService.removeUID();
+    loggedInUser = User();
     isLoading = false;
   }
 }
