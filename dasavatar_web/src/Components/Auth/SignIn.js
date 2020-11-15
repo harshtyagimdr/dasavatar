@@ -27,7 +27,7 @@ class SignIn extends Component {
 
 		<div className="bg"></div>
         
-		<form>
+		<form className='signin-form'>
         <h1 style={{color:'white'}}>DasAvatar</h1>
 			<header>
 				<img src="https://assets.codepen.io/3931482/internal/avatars/users/default.png?format=auto&height=80&version=1592223909&width=80"/>
@@ -42,8 +42,8 @@ class SignIn extends Component {
 
 		</form>
 
-		<footer>
-			<button onClick={this.handleSubmit}>Continue</button>
+		<footer className='auth-footer'>
+			<button className='auth-button' onClick={this.handleSubmit}>Continue</button>
 			<p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
 		</footer>
 
